@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:visible="true"
+    >
+
+    <item
+        android:id="@+id/nav0"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"
+        android:enabled="true"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/nav1"
+        android:icon="@drawable/ic_baseline_face_24"
+        android:title="Profile"
+        android:enabled="true"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/nav2"
+        android:icon="@drawable/ic_baseline_library_add_check_24"
+        android:title="Exams"
+        android:enabled="true"
+        android:visible="true"
+        />
+
+</menu>
