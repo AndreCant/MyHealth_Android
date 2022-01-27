@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">My Health</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="register" tools:ignore="ExtraTranslation">REGISTER</string>
+    <string name="login_email_hint" tools:ignore="ExtraTranslation">Email</string>
+    <string name="login_password_hint" tools:ignore="ExtraTranslation">Password</string>
+    <string name="signup_login_hint" tools:ignore="ExtraTranslation">Already have an account? Sign In</string>
+    <string name="login_signup_hint" tools:ignore="ExtraTranslation">Don\'t have an account? Sign Up</string>
 </resources>

@@ -10,7 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyHealth">
-
+        <activity
+            android:name=".activity_login"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.MyHealth.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -20,9 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MenuActivity" />
-
     </application>
 
 </manifest>
