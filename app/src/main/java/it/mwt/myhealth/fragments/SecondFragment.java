@@ -1,4 +1,4 @@
-package it.mwt.myhealth;
+package it.mwt.myhealth.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import it.mwt.myhealth.R;
 import it.mwt.myhealth.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {

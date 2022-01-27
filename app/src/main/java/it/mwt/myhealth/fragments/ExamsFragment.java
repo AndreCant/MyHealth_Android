@@ -1,4 +1,4 @@
-package it.mwt.myhealth;
+package it.mwt.myhealth.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import it.mwt.myhealth.MyExamsRecyclerViewAdapter;
+import it.mwt.myhealth.R;
 import it.mwt.myhealth.placeholder.PlaceholderContent;
 
 /**

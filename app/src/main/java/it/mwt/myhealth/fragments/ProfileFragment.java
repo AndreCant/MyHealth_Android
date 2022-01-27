@@ -1,4 +1,4 @@
-package it.mwt.myhealth;
+package it.mwt.myhealth.fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import it.mwt.myhealth.R;
 
 /**
  * A simple {@link Fragment} subclass.
