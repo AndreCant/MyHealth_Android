@@ -9,6 +9,12 @@ import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import it.mwt.myhealth.database.DBSQL;
+import it.mwt.myhealth.model.ClinicLocation;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextInputEditText loginUsername;
@@ -41,9 +47,23 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-                intent.putExtra(MenuActivity.KEY_USERNAME, username);
-                startActivity(intent);
+//                List<ClinicLocation> listC = new ArrayList<>();
+//                ClinicLocation c = new ClinicLocation();
+//                c.setName("Test");
+//                c.setLatitude(10.09);
+//                c.setLongitude(90.88);
+//                listC.add(c);
+//                System.out.println(listC.get(0).getId());
+//                System.out.println(listC.get(0).getName());
+//                DBSQL.getInstance(getApplicationContext()).insert(listC);
+//
+//                List<ClinicLocation> listC2 = DBSQL.getInstance(getApplicationContext()).findAll();
+//                System.out.println(listC2.size());
+//                System.out.println(listC2.get(0));
+//
+//                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+//                intent.putExtra(MenuActivity.KEY_USERNAME, username);
+//                startActivity(intent);
             }
         });
     }
