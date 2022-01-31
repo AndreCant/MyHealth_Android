@@ -6,9 +6,12 @@
         <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/activity_login.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/activity_menu.xml" value="0.3532608695652174" />
+        <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/fragment_categories.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/fragment_exams.xml" value="0.2911458333333333" />
         <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/fragment_exams_list.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/fragment_first.xml" value="0.26666666666666666" />
+        <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/fragment_item.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/fragment_item_list.xml" value="0.23541666666666666" />
         <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/fragment_profile.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/fragment_second.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/andre/Desktop/Master/13-Android/MyHealth/app/src/main/res/layout/layout_login.xml" value="0.26666666666666666" />
@@ -16,18 +19,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_face_24.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.28802083333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37228260869565216" />
-<<<<<<< HEAD
-        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/content_activity_login.xml" value="0.20833333333333334" />
-        <entry key="app/src/main/res/layout/fragment_exams.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_exams_list.xml" value="0.21979166666666666" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2046875" />
-        <entry key="app/src/main/res/layout/layout_login.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/layout_register.xml" value="0.33" />
-=======
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.33" />
->>>>>>> b0fd12fcc096128c3aed6d64ca2fe01e1146c83a
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.271875" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.271875" />
       </map>
