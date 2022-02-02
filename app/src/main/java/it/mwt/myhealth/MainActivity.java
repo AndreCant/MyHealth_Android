@@ -16,20 +16,28 @@ import java.util.List;
 
 import it.mwt.myhealth.database.DBSQL;
 import it.mwt.myhealth.model.ClinicLocation;
+import it.mwt.myhealth.ui.login.LoginActivity;
+import it.mwt.myhealth.ui.registration.RegistrationActivity;
+import it.mwt.myhealth.util.Preferences;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
-    public static final String KEY_USERNAME = "username";
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_login);
-        setContentView(R.layout.activity_menu);
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_menu);
+
+//        Preferences.setUser(getApplicationContext(), null);
+//
+//        if (!Preferences.isLogged(getApplicationContext())){
+//            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//            startActivity(intent);
+//        }
 
     }
 

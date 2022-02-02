@@ -23,21 +23,13 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top">
-            <EditText
-                style="@style/modifiedEditText"
-                android:inputType="text"
-                android:maxLines="1"
-                android:hint="@string/name"/>
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/parent"
-            android:layout_marginTop="@dimen/signup_text_margin_top">
             <EditText
+                android:id="@+id/usernameRegistration"
                 style="@style/modifiedEditText"
+                android:hint="@string/username"
                 android:inputType="text"
-                android:maxLines="1"
-                android:hint="@string/mobile_number"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -45,6 +37,7 @@
             android:layout_marginTop="@dimen/signup_text_margin_top">
 
             <EditText
+                android:id="@+id/emailRegistration"
                 style="@style/modifiedEditText"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
@@ -56,6 +49,19 @@
             android:layout_marginTop="@dimen/signup_text_margin_top">
 
             <EditText
+                android:id="@+id/fiscalCodeRegistration"
+                style="@style/modifiedEditText"
+                android:hint="@string/fiscal_code"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+            <EditText
+                android:id="@+id/passwordRegistration"
                 style="@style/modifiedEditText"
                 android:hint="@string/password"
                 android:inputType="textPassword"
@@ -63,14 +69,16 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/registerBtn"
             style="@style/loginButton"
             android:layout_gravity="center"
-            android:text="Register" />
+            android:text="@string/register" />
 
         <TextView
+            android:id="@+id/loginBtn"
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin"
-            android:text="Login"
+            android:text="@string/login"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold" />

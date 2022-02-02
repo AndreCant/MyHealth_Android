@@ -23,14 +23,14 @@
             android:layout_marginTop="@dimen/loginViewsMargin"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputEmail"
+            android:id="@+id/textInputUsername"
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin">
 
             <EditText
-                android:id="@+id/editTextEmail"
+                android:id="@+id/editTextUsername"
                 style="@style/modifiedEditText"
-                android:hint="@string/email"
+                android:hint="@string/username"
                 android:inputType="textEmailAddress"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -68,10 +68,10 @@
             android:text="Login" />
 
         <TextView
+            android:id="@+id/toRegisterBtn"
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin"
             android:minHeight="48dp"
-            android:onClick="viewRegisterClicked"
             android:text="Register"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
