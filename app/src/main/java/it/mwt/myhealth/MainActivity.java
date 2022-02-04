@@ -1,28 +1,22 @@
 package it.mwt.myhealth;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import it.mwt.myhealth.database.DBSQL;
-import it.mwt.myhealth.model.ClinicLocation;
-import it.mwt.myhealth.ui.login.LoginActivity;
-import it.mwt.myhealth.ui.registration.RegistrationActivity;
-import it.mwt.myhealth.util.Preferences;
+import it.mwt.myhealth.ui.categories.CategoriesFragment;
+import it.mwt.myhealth.ui.profile.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
+//    BottomNavigationView bottomNavigationView;
+
+    private BottomNavigationView bottomNavigationMenu;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,7 +24,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation_menu);
+//        bottomNavigationView = findViewById(R.id.bottom_navigation_menu);
+
+        bottomNavigationMenu = findViewById(R.id.bottomNavigationMenu);
+        bottomNavigationMenu.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new CategoriesFragment()).commit();
 
 //        Preferences.setUser(getApplicationContext(), null);
 //
@@ -40,6 +38,23 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment = null;
+            switch (item.getItemId()){
+                case R.id.home:
+                    fragment = new CategoriesFragment();
+                    break;
+                case R.id.profile:
+                    fragment = new ProfileFragment();
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,  fragment).commit();
+            return true;
+        }
+    };
 
 //    private TextInputEditText loginUsername;
 //    private TextInputEditText loginPassword;

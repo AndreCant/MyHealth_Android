@@ -2,8 +2,6 @@ package it.mwt.myhealth.ui.profile;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -19,97 +17,50 @@ import it.mwt.myhealth.R;
  */
 public class ProfileFragment extends Fragment {
 
-//    private TextView fullNameTextView;
-//    private TextView phoneTextView;
-//    private TextView carTextView;
-//
-//    private LinearLayout profileDetails;
-//    private LinearLayout profileEndedRoutes;
-//    private LinearLayout profileCars;
-//    private LinearLayout profilePayments;
-//
-//    private HeaderViewModel viewModel;
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-    @Nullable
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public ProfileFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ProfileFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ProfileFragment newInstance(String param1, String param2) {
+        ProfileFragment fragment = new ProfileFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        //Header
-//        viewModel = new ViewModelProvider(requireActivity()).get(HeaderViewModel.class);
-//        viewModel.setTitleLive("Profilo");
-//        viewModel.setBackLive(false);
-//
-//        //Bind Top Personal info
-//        Context ctx = view.getContext();
-//        fullNameTextView = view.findViewById(R.id.full_name);
-//        phoneTextView = view.findViewById(R.id.user_phone);
-//        carTextView = view.findViewById(R.id.user_car);
-//
-//        // Fill Top Personal Info fields
-//        fillTopUserInfo(ctx);
-//
-//        //Bind list
-//        profileDetails = view.findViewById(R.id.profile_profile_details);
-//        profileEndedRoutes = view.findViewById(R.id.profile_ended_routes);
-//        profileCars = view.findViewById(R.id.profile_cars);
-//        profilePayments = view.findViewById(R.id.profile_payments);
-//
-//        //Actions
-//
-//        // Open Edit Profile Activity
-//        profileDetails.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), ProfileDetailsActivity.class);
-//                view.getContext().startActivity(intent);
-//            }
-//        });
-//
-//        // Open Ended routes Activity
-//        profileEndedRoutes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), EndedRoutes.class);
-//                view.getContext().startActivity(intent);
-//            }
-//        });
-//
-//        // Open Cars Activity
-//        profileCars.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), CarsActivity.class);
-//                view.getContext().startActivity(intent);
-//            }
-//        });
-//
-//        // Open Payments Activity
-//        profilePayments.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), PaymentsActivity.class);
-//                view.getContext().startActivity(intent);
-//            }
-//        });
-    }
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        fillTopUserInfo(getContext());
-//    }
-//
-//    private void fillTopUserInfo(Context context){
-//        Context ctx = context;
-//
-//        fullNameTextView.setText(Pref.getName(ctx)+" "+Pref.getSurname(ctx));
-//        phoneTextView.setText(Pref.getPhone(ctx));
-//        carTextView.setText(Pref.getCar(ctx));
-//    }
 }
