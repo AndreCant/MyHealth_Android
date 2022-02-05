@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import it.mwt.myhealth.fragments.ExamsFragment;
 import it.mwt.myhealth.ui.categories.CategoriesFragment;
 import it.mwt.myhealth.ui.profile.ProfileFragment;
+import it.mwt.myhealth.util.Preferences;
 
 public class MainActivity extends AppCompatActivity {
 
