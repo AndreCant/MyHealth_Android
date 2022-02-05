@@ -24,6 +24,11 @@
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.28802083333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37228260869565216" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/adapter_exams.xml" value="0.27853260869565216" />
+        <entry key="app/src/main/res/layout/fragment_categories.xml" value="0.27853260869565216" />
+        <entry key="app/src/main/res/layout/fragment_exams.xml" value="0.27853260869565216" />
+        <entry key="app/src/main/res/layout/fragment_exams_list.xml" value="0.27853260869565216" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.27853260869565216" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.271875" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.271875" />
       </map>

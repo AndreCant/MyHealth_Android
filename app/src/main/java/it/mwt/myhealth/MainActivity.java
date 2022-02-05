@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import it.mwt.myhealth.fragments.ExamsFragment;
 import it.mwt.myhealth.ui.categories.CategoriesFragment;
 import it.mwt.myhealth.ui.profile.ProfileFragment;
 
@@ -49,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.profile:
                     fragment = new ProfileFragment();
+                    break;
+                case R.id.exams:
+                    fragment = new ExamsFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,  fragment).commit();
