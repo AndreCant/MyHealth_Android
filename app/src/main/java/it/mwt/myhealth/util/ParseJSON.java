@@ -1,9 +1,12 @@
 package it.mwt.myhealth.util;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.time.LocalDate;
 
 import it.mwt.myhealth.model.User;
 
@@ -23,14 +26,20 @@ public class ParseJSON {
         return jsonRequest;
     }
 
+    @SuppressLint("NewApi")
     public static User json2user(JSONObject response) throws JSONException {
-
-        String token = response.getString("token");
-        String username = response.getString("username");
-
+        JSONObject jsonUser = response.getJSONObject("user");
         User user = new User();
-        user.setUsername(username);
-        user.setToken(token);
+
+        if (jsonUser.has("id")) user.setId(jsonUser.getLong("id"));
+        if (jsonUser.has("token")) user.setToken(jsonUser.getString("token"));
+        if (jsonUser.has("username")) user.setUsername(jsonUser.getString("username"));
+        if (jsonUser.has("email")) user.setEmail(jsonUser.getString("email"));
+        if (jsonUser.has("name")) user.setName(jsonUser.getString("name"));
+        if (jsonUser.has("surname")) user.setSurname(jsonUser.getString("surname"));
+        if (jsonUser.has("fiscalCode")) user.setFiscalCode(jsonUser.getString("fiscalCode"));
+        if (jsonUser.has("dateOfBirth")) user.setDateOfBirth(jsonUser.getString("dateOfBirth"));
+        if (jsonUser.has("gender")) user.setGender(jsonUser.getString("gender"));
 
         return user;
     }
