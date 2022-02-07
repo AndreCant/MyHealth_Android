@@ -74,4 +74,33 @@ public class Preferences {
     public static long getId(Context context){
         return getPref(context).getLong(ID,0);
     }
+
+    public static String getUsername(Context context){
+        return getPref(context).getString(USERNAME,"");
+    }
+
+    public static String getEmail(Context context){
+        return getPref(context).getString(EMAIL,"");
+    }
+
+    public static String getName(Context context){
+        return getPref(context).getString(NAME,"");
+    }
+
+    public static String getSurname(Context context){
+        return getPref(context).getString(SURNAME,"");
+    }
+
+    public static String getFiscalCode(Context context){
+        return getPref(context).getString(FISCAL_CODE,"");
+    }
+
+    public static String getDateOfBirth(Context context){
+        return getPref(context).getString(DATE_OF_BIRTH,"");
+    }
+
+    public static String getGender(Context context){
+        return getPref(context).getString(GENDER,"");
+    }
+
 }
