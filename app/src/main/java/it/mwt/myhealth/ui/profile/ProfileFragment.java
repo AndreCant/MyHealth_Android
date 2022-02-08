@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -18,6 +19,7 @@ import it.mwt.myhealth.MainActivity;
 import it.mwt.myhealth.R;
 import it.mwt.myhealth.model.User;
 import it.mwt.myhealth.ui.categories.CategoriesFragment;
+import it.mwt.myhealth.ui.location.ClinicLocationActivity;
 import it.mwt.myhealth.ui.login.LoginActivity;
 import it.mwt.myhealth.util.ParseJSON;
 import it.mwt.myhealth.util.Preferences;
@@ -33,6 +35,7 @@ public class ProfileFragment extends Fragment {
     private TextView dateOfBirthText;
     private TextView genderText;
     private TextView logout;
+    private Button location;
 
     public ProfileFragment() {}
 
@@ -55,6 +58,7 @@ public class ProfileFragment extends Fragment {
         dateOfBirthText = view.findViewById(R.id.profile_text_date_of_birth);
         genderText = view.findViewById(R.id.profile_text_gender);
         logout = view.findViewById(R.id.profile_logout);
+        location = view.findViewById(R.id.clinic_location_btn);
 
         if (!Preferences.isLogged(getContext())) {
             getParentFragmentManager().beginTransaction().replace(R.id.frame_layout,  new CategoriesFragment()).commit();
@@ -63,35 +67,33 @@ public class ProfileFragment extends Fragment {
         }else {
             setProfileInfo();
             setLogoutBtn();
+            setLocationBtn();
         }
     }
 
     private void setProfileInfo(){
 
         if (Preferences.getId(getContext()) == 0){
-            System.out.println("No user set!");
             UserRequest.getInstance().profile(
                     getContext(),
                     null,
-                    response -> {
+                    response -> new Thread(() -> {
                         try {
-                            System.out.println("success");
                             User user = ParseJSON.json2user(response);
                             Preferences.setUserInfo(getContext(), user);
                             setTextView();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    },
-                    error -> {
-                        System.out.println("error");
-
+                    }).start(),
+                    error -> new Thread(() -> {
                         if(error.networkResponse.statusCode == 401){
                             Preferences.setUser(getContext(), null);
                             Intent intent = new Intent(getContext(), LoginActivity.class);
                             startActivity(intent);
                         }
-                    });
+                    }).start()
+            );
         }else {
             setTextView();
         }
@@ -111,6 +113,13 @@ public class ProfileFragment extends Fragment {
         logout.setOnClickListener(view -> {
             Preferences.setUser(getContext(), null);
             getParentFragmentManager().beginTransaction().replace(R.id.frame_layout,  new CategoriesFragment()).commit();
+        });
+    }
+
+    private void setLocationBtn(){
+        location.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), ClinicLocationActivity.class);
+            startActivity(intent);
         });
     }
 }

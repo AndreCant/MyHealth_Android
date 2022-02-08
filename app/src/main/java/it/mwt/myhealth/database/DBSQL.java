@@ -1,5 +1,6 @@
 package it.mwt.myhealth.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -63,11 +64,13 @@ public class DBSQL extends SQLiteOpenHelper {
         }
     }
 
-    public List<ClinicLocation> findAll() {
+    @SuppressLint("Range")
+    public ClinicLocation findLastClinicLocation() {
         List<ClinicLocation> data = new ArrayList<>();
 
-        String sql = "SELECT * FROM clinic_location ORDER BY name ASC";
+        String sql = "SELECT * FROM clinic_location ORDER BY id DESC LIMIT 1";
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
         while(cursor.moveToNext()) {
             ClinicLocation clinicLocation = new ClinicLocation();
             clinicLocation.setId(cursor.getLong(cursor.getColumnIndex("id")));
@@ -79,6 +82,6 @@ public class DBSQL extends SQLiteOpenHelper {
         }
         cursor.close();
 
-        return data;
+        return !data.isEmpty() ? data.get(0) : new ClinicLocation();
     }
 }

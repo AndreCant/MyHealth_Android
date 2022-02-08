@@ -18,6 +18,7 @@ public class Preferences {
     private static final String FISCAL_CODE = "FISCAL_CODE";
     private static final String DATE_OF_BIRTH = "DATE_OF_BIRTH";
     private static final String GENDER = "GENDER";
+    private static final String FIRST_START_LOCATION = "FIRST_START_LOCATION";
 
 
     private static SharedPreferences getPref(Context context){
@@ -101,6 +102,14 @@ public class Preferences {
 
     public static String getGender(Context context){
         return getPref(context).getString(GENDER,"");
+    }
+
+    public static boolean getFirstStartLocation(Context context){
+        return getPref(context).getBoolean(FIRST_START_LOCATION,true);
+    }
+
+    public static void setFirstStartLocation(Context context, boolean isFirstStart){
+        getPref(context).edit().putBoolean(FIRST_START_LOCATION, isFirstStart).apply();
     }
 
 }

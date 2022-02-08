@@ -1,4 +1,4 @@
-package it.mwt.myhealth.fragments;
+package it.mwt.myhealth.ui.exam;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -80,8 +80,16 @@ public class RegistrationActivity extends AppCompatActivity {
             //Send login request
             UserRequest.getInstance().registration(RegistrationActivity.this,
                     jsonRequest,
-                    responseListener,
-                    error -> {
+                    response -> new Thread(() -> {
+                        try {
+                            Preferences.setUser(getApplicationContext(), ParseJSON.json2user(response));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }).start(),
+                    error -> new Thread(() -> {
                         String errorMessage = "Servizio non disponibile";
                         try {
                             JSONObject data = new JSONObject(new String(error.networkResponse.data, "utf-8"));
@@ -116,7 +124,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
-                    }
+                    }).start()
             );
         });
 
@@ -125,17 +133,5 @@ public class RegistrationActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
-    private final Response.Listener<JSONObject> responseListener = response -> {
-
-        try {
-            Preferences.setUser(getApplicationContext(), ParseJSON.json2user(response));
-
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    };
 
 }

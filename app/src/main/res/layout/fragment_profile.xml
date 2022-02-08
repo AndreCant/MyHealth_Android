@@ -263,10 +263,21 @@
 
                 </LinearLayout>
 
-
+                <Button
+                    android:id="@+id/clinic_location_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clinic Location"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="40dp"
+                    android:backgroundTint="@color/headings"
+                    />
             </LinearLayout>
 
+
         </RelativeLayout>
+
+
 
     </RelativeLayout>
 </ScrollView>
