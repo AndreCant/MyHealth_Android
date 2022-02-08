@@ -1,5 +1,6 @@
 package it.mwt.myhealth.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONException;
+
+import java.util.HashMap;
+
+import it.mwt.myhealth.model.User;
+import it.mwt.myhealth.ui.login.LoginActivity;
+import it.mwt.myhealth.util.ParseJSON;
+import it.mwt.myhealth.util.Preferences;
+import it.mwt.myhealth.volley.ExamRequest;
+
 import it.mwt.myhealth.R;
 import it.mwt.myhealth.adapter.ExamsRecyclerViewAdapter;
 
 public class ExamsFragment extends Fragment {
+
+    private HashMap exams = new HashMap();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,6 +39,22 @@ public class ExamsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String[] exams ={"Cuore", "spalla", "braccio", "Cuore", "spalla", "braccio","Cuore", "spalla", "braccio","Cuore", "spalla", "braccio"};
 
+    ExamRequest.getInstance().getExams(getContext(),
+            null,
+            response -> {
+                    System.out.println("success");
+            },
+            error->{
+
+                System.out.println("error");
+
+                if(error.networkResponse.statusCode == 401){
+                    Preferences.setUser(getContext(), null);
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+            );
 
         RecyclerView recyclerView = getView().findViewById(R.id.exams_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));

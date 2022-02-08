@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.json.JSONException;
 
@@ -20,6 +21,14 @@ import it.mwt.myhealth.util.Preferences;
 import it.mwt.myhealth.volley.UserRequest;
 
 public class ProfileFragment extends Fragment {
+
+    private TextView usernameText;
+    private TextView emailText;
+    private TextView nameText;
+    private TextView surnameText;
+    private TextView fiscalCodeText;
+    private TextView dateOfBirthText;
+    private TextView genderText;
 
     public ProfileFragment() {}
 
@@ -52,23 +61,22 @@ public class ProfileFragment extends Fragment {
                         try {
                             System.out.println("success");
                             User user = ParseJSON.json2user(response);
-                            System.out.println(user.getId());
-                            System.out.println(user.getUsername());
+                            Preferences.setUserInfo(getContext(), user);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     },
                     error -> {
                         System.out.println("error");
-//                    editTextPassword.setError("Servizio non disponibile");
-                        System.out.println(error.getMessage());
-                        System.out.println(error.networkResponse.statusCode);
+
+                        if(error.networkResponse.statusCode == 401){
+                            Preferences.setUser(getContext(), null);
+                            Intent intent = new Intent(getContext(), LoginActivity.class);
+                            startActivity(intent);
+                        }
                     });
         }else {
-            System.out.println("User already setted!");
 
-            System.out.println(Preferences.getId(getContext()));
         }
-
     }
 }

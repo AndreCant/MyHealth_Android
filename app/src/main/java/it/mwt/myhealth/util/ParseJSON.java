@@ -7,7 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
+import it.mwt.myhealth.model.Exam;
 import it.mwt.myhealth.model.User;
 
 public class ParseJSON {
@@ -28,7 +30,7 @@ public class ParseJSON {
 
     @SuppressLint("NewApi")
     public static User json2user(JSONObject response) throws JSONException {
-        JSONObject jsonUser = response.getJSONObject("user");
+        JSONObject jsonUser = response.has("user") ? response.getJSONObject("user") : response;
         User user = new User();
 
         if (jsonUser.has("id")) user.setId(jsonUser.getLong("id"));
@@ -58,4 +60,7 @@ public class ParseJSON {
 
         return jsonUser;
     }
+
+
+
 }
