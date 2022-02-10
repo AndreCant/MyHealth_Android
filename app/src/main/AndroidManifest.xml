@@ -51,6 +51,11 @@
         </activity>
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.registration.RegistrationActivity" />
+<<<<<<< HEAD
+=======
+        <activity android:name=".ui.exams.ExamsActivity"/>
+        <activity android:name=".ui.location.ClinicLocationActivity" />
+>>>>>>> 745a557aac98d5fdca4baa8f480a2becad94c50a
     </application>
 
 </manifest>
