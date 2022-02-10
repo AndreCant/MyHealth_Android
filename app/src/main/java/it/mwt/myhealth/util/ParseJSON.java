@@ -5,8 +5,10 @@ import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import it.mwt.myhealth.model.Exam;
@@ -61,6 +63,18 @@ public class ParseJSON {
         return jsonUser;
     }
 
+    public static ArrayList<Exam> json2exam(JSONObject response) throws JSONException {
+        JSONArray jsonExams = response.has("all") ? response.getJSONArray("all") : null;
+        ArrayList<Exam> exams = new  ArrayList();
+        for (int i = 0; i < jsonExams.length(); i++) {
+            JSONObject row = jsonExams.getJSONObject(i);
+            Exam exam = new Exam();
 
-
+            if (row.has("name")) exam.setName(row.getString("name"));
+            if (row.has("price")) exam.setPrice(row.getDouble("price"));
+            if (row.has("type")) exam.setType(row.getString("type"));
+            exams.add(exam);
+        }
+        return exams;
+    }
 }

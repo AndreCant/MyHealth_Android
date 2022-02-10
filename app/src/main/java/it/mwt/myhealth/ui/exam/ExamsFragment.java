@@ -58,7 +58,7 @@ public class ExamsFragment extends Fragment {
 
         RecyclerView recyclerView = getView().findViewById(R.id.exams_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        recyclerView.setAdapter(new ExamsRecyclerViewAdapter(exams));
+        //recyclerView.setAdapter(new ExamsRecyclerViewAdapter(exams));
     }
 
 }

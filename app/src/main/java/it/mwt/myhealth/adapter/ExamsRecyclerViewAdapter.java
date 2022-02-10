@@ -8,16 +8,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 import it.mwt.myhealth.R;
+import it.mwt.myhealth.model.Exam;
 
 public class ExamsRecyclerViewAdapter extends RecyclerView.Adapter<ExamsRecyclerViewAdapter.ViewHolder> {
 
-    private String[] exams;
+    private ArrayList<Exam> exams;
 
 
-    public  ExamsRecyclerViewAdapter (String[] exams){
+    public  ExamsRecyclerViewAdapter (ArrayList<Exam>exams){
         this.exams = exams;
-        if (this.exams == null) this.exams = new String[0];
+        if (this.exams == null) this.exams =  new ArrayList<Exam> ();
     }
     @NonNull
     @Override
@@ -31,12 +34,12 @@ public class ExamsRecyclerViewAdapter extends RecyclerView.Adapter<ExamsRecycler
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         //riprendo elemento  del viewholder (name) e setto i parametri
-        holder.name.setText(exams[position]);
+        holder.name.setText(exams.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return exams.length;
+        return exams.size();
     }
 
 
