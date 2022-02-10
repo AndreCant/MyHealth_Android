@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +16,11 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 
-import it.mwt.myhealth.MainActivity;
 import it.mwt.myhealth.R;
 import it.mwt.myhealth.model.User;
 import it.mwt.myhealth.ui.categories.CategoriesFragment;
 import it.mwt.myhealth.ui.location.ClinicLocationActivity;
+import it.mwt.myhealth.ui.location.ClinicLocationViewModel;
 import it.mwt.myhealth.ui.login.LoginActivity;
 import it.mwt.myhealth.util.ParseJSON;
 import it.mwt.myhealth.util.Preferences;
@@ -37,7 +38,17 @@ public class ProfileFragment extends Fragment {
     private TextView logout;
     private Button location;
 
+    private ClinicLocationViewModel clinicLocation;
+
     public ProfileFragment() {}
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        clinicLocation = new ViewModelProvider(this).get(ClinicLocationViewModel.class);
+        clinicLocation.retrieveData(getActivity().getApplicationContext());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
