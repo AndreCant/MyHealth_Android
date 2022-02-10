@@ -1,17 +1,20 @@
 package it.mwt.myhealth.ui.location;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
-import android.content.Intent;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.AttributeSet;
+import android.view.View;
 
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
@@ -24,68 +27,48 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import it.mwt.myhealth.R;
+import it.mwt.myhealth.databinding.ActivityClinicLocationBinding;
+import it.mwt.myhealth.model.ClinicLocation;
 import it.mwt.myhealth.util.LocationUtils;
 
-public class ClinicLocationActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
+public class ClinicLocationActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
 
-    private GoogleMap map;
+    private GoogleMap mMap;
     private Marker marker;
-
-    private LocationCallback callback = new LocationCallback() {
-        @Override
-        public void onLocationResult(@NonNull LocationResult locationResult) {
-            super.onLocationResult(locationResult);
-
-            if(!locationResult.getLocations().isEmpty()) {
-                Location location = locationResult.getLocations().get(0);
-                LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
-
-                if(marker == null) {
-                    MarkerOptions options = new MarkerOptions();
-                    options.title("MY LOCATION");
-                    options.position(position);
-                    marker = map.addMarker(options);
-                } else {
-                    marker.setPosition(position);
-                }
-            }
-        }
-    };
+    private ActivityClinicLocationBinding binding;
+    private ClinicLocationViewModel clinicLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("onCreate");
         super.onCreate(savedInstanceState);
-        System.out.println("qui");
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps);
-        System.out.println("qui");
+
+        clinicLocation = new ViewModelProvider(this).get(ClinicLocationViewModel.class);
+        clinicLocation.retrieveData(getApplicationContext());
+
+        binding = ActivityClinicLocationBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        setContentView(R.layout.activity_clinic_location);
-
-        System.out.println("qui");
-        TextView textTitle = findViewById(R.id.textTitle);
-        TextView textLocation = findViewById(R.id.textLocation);
-        System.out.println("qui");
-
-        System.out.println("qui");
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
 
-        map = googleMap;
+        clinicLocation.getClinicLocation().observe(this, location -> {
+            if(location != null) {
+                LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
 
-        LatLng position = new LatLng(
-                getIntent().getDoubleExtra("latitude", 0.0),
-                getIntent().getDoubleExtra("longitude", 0.0));
+                MarkerOptions options = new MarkerOptions();
+                options.position(position);
+                options.title(location.getName());
+                mMap.addMarker(options);
 
-        MarkerOptions options = new MarkerOptions();
-        options.position(position);
-        options.title(getIntent().getStringExtra("name"));
-        map.addMarker(options);
-
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 10f));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 10f));
+            }
+        });
 
         if(!LocationUtils.startGoogleServices(getApplicationContext(), callback)) {
             ActivityCompat.requestPermissions(ClinicLocationActivity.this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, 1);
@@ -106,22 +89,45 @@ public class ClinicLocationActivity extends AppCompatActivity implements OnMapRe
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 LocationUtils.start(getApplicationContext(), this);
             } else {
-                // TODO:
+                LocationUtils.stop(getApplicationContext(), this);
             }
         }
     }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
+
         LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
 
         if(marker == null) {
             MarkerOptions options = new MarkerOptions();
             options.title("MY LOCATION");
             options.position(position);
-            marker = map.addMarker(options);
+            marker = mMap.addMarker(options);
         } else {
             marker.setPosition(position);
         }
     }
+
+    private LocationCallback callback = new LocationCallback() {
+        @Override
+        public void onLocationResult(@NonNull LocationResult locationResult) {
+            super.onLocationResult(locationResult);
+
+            if(!locationResult.getLocations().isEmpty()) {
+
+                Location location = locationResult.getLocations().get(0);
+                LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
+
+                if(marker == null) {
+                    MarkerOptions options = new MarkerOptions();
+                    options.title("MY LOCATION");
+                    options.position(position);
+                    marker = mMap.addMarker(options);
+                } else {
+                    marker.setPosition(position);
+                }
+            }
+        }
+    };
 }
