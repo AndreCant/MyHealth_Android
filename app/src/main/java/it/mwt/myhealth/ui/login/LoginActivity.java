@@ -76,23 +76,17 @@ public class LoginActivity extends AppCompatActivity {
             //Send login request
             UserRequest.getInstance().login(LoginActivity.this,
                     jsonRequest,
-                    response -> {
-
+                    response -> new Thread(() -> {
                         try {
-                            System.out.println("test1");
                             Preferences.setUser(getApplicationContext(), ParseJSON.json2user(response));
-                            System.out.println("test2");
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            System.out.println("start");
                             finish();
-                            System.out.println("finish");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    },
-                    error -> {
+                    }).start(),
+                    error -> new Thread(() -> {
                         String errorMessage = "Servizio non disponibile";
-                        System.out.println(error.networkResponse);
                         if(error.networkResponse != null){
                             switch ( error.networkResponse.statusCode){
                                 case 401:
@@ -107,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                         editTextPassword.setError(errorMessage);
-                    }
+                    }).start()
             );
         });
 
