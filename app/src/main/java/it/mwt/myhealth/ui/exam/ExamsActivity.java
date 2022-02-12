@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -24,12 +25,16 @@ public class ExamsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_exams);
-
+        Intent intent = getIntent();
+        intent.getSerializableExtra("type");
         viewModel = new ViewModelProvider(this).get(ExamViewModel.class);
-        viewModel.setType("all");
+        viewModel.setType(intent.getSerializableExtra("type").toString());
         viewModel.retrieveData(getApplicationContext());
 
+
+        //String[] exams = {"torino", "roma", "torino", "roma","torino", "roma" ,"torino", "roma"};
         this.setupRecyclerView();
     }
 

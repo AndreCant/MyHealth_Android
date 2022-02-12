@@ -57,11 +57,41 @@ public class ExamViewModel extends ViewModel {
                     }).start()
                 );
             break;
-
             case "exam":
+                ExamRequest.getInstance().getExamsType(
+                        context,
+                        null,
+                        response -> new Thread(() -> {
+                            List<Exam> exams;
+                            try {
+                                exams = ParseJSON.json2examsType(response);
+                                data.postValue(exams);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }).start(),
+                        error -> new Thread(() -> {
+                        }).start(),
+                        "exam"
+                );
             break;
-
             case "path":
+                ExamRequest.getInstance().getExamsType(
+                        context,
+                        null,
+                        response -> new Thread(() -> {
+                            List<Exam> exams;
+                            try {
+                                exams = ParseJSON.json2examsType(response);
+                                data.postValue(exams);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }).start(),
+                        error -> new Thread(() -> {
+                        }).start(),
+                        "path"
+                );
             break;
         }
 
