@@ -13,7 +13,7 @@ public class ExamRequest {
     private static final String BASE_URL="http://10.0.2.2:8080/myhealth/rest";
     private static final String EXAMS=BASE_URL+"/public/exams";
     private static final String EXAMS_TYPE_REHABILITATION=BASE_URL+"/public/exams?type=rehabilitation ";
-    private static final String EXAMS_TYPE_EXAM=BASE_URL+"/public/exams?type=exam ";
+    private static final String EXAMS_TYPE_EXAM=BASE_URL+"/public/exams?type=";
 
 
     private static ExamRequest instance = null;
@@ -36,24 +36,11 @@ public class ExamRequest {
         VolleyRequest.getInstance(context).getQueue().add(request);
     }
 
-    public void getTypeExam(Context context, JSONObject jsonRequest, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener){
+    public void getExamsType(Context context, JSONObject jsonRequest, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener, String type){
 
         JsonObjectRequest request = new JsonObjectRequest(
                 JsonObjectRequest.Method.GET,
-                EXAMS_TYPE_EXAM,
-                jsonRequest,
-                responseListener,
-                errorListener
-        );
-
-        VolleyRequest.getInstance(context).getQueue().add(request);
-    }
-
-    public void getCategoriesType(Context context, JSONObject jsonRequest, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener){
-
-        JsonObjectRequest request = new JsonObjectRequest(
-                JsonObjectRequest.Method.GET,
-                EXAMS_TYPE_REHABILITATION,
+                EXAMS_TYPE_EXAM+type,
                 jsonRequest,
                 responseListener,
                 errorListener

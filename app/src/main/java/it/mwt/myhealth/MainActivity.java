@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import it.mwt.myhealth.ui.exam.ExamsFragment;
+import it.mwt.myhealth.ui.exam.MyExamsFragment;
 import it.mwt.myhealth.ui.categories.CategoriesFragment;
 import it.mwt.myhealth.ui.profile.ProfileFragment;
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new ProfileFragment();
                     break;
                 case R.id.exams:
-                    fragment = new ExamsFragment();
+                    fragment = new MyExamsFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,  fragment).commit();

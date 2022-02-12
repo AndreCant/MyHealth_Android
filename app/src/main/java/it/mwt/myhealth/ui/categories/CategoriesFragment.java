@@ -23,7 +23,7 @@ import it.mwt.myhealth.volley.ExamRequest;
 public class CategoriesFragment extends Fragment implements View.OnClickListener {
 
     private LinearLayout linearLayout;
-    private LinearLayout linearLayoutCategories;
+    private LinearLayout linearLayoutRehabilitations;
     private LinearLayout linearLayoutExam;
 
 
@@ -38,21 +38,23 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
         super.onViewCreated(view, savedInstanceState);
 
         linearLayout = (LinearLayout) getView().findViewById(R.id.all_exams);
-        linearLayoutCategories = (LinearLayout)  getView().findViewById(R.id.rehabilitations_path);
-        linearLayoutExam = (LinearLayout)  getView().findViewById(R.id.rehabilitations_path);
+        linearLayoutRehabilitations = (LinearLayout)  getView().findViewById(R.id.rehabilitations_path);
+        linearLayoutExam = (LinearLayout)  getView().findViewById(R.id.exams);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ExamsActivity.class);
+                intent.putExtra("type", "all");
                 startActivity(intent);
             }
         });
 
-        linearLayoutCategories.setOnClickListener(new View.OnClickListener() {
+        linearLayoutRehabilitations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ExamsActivity.class);
+                intent.putExtra("type", "path");
                 startActivity(intent);
             }
         });
@@ -61,6 +63,7 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ExamsActivity.class);
+                intent.putExtra("type", "exam");
                 startActivity(intent);
             }
         });

@@ -23,7 +23,7 @@ import it.mwt.myhealth.volley.ExamRequest;
 import it.mwt.myhealth.R;
 import it.mwt.myhealth.adapter.ExamsRecyclerViewAdapter;
 
-public class ExamsFragment extends Fragment {
+public class MyExamsFragment extends Fragment {
 
     private HashMap exams = new HashMap();
 

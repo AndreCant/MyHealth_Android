@@ -77,4 +77,19 @@ public class ParseJSON {
         }
         return exams;
     }
+
+    public static ArrayList<Exam> json2examsType(JSONObject response) throws JSONException {
+        JSONArray jsonExams = response.has("exams") ? response.getJSONArray("exams") : response.getJSONArray("rehabilitationPaths");
+        ArrayList<Exam> exams = new  ArrayList();
+        for (int i = 0; i < jsonExams.length(); i++) {
+            JSONObject row = jsonExams.getJSONObject(i);
+            Exam exam = new Exam();
+
+            if (row.has("name")) exam.setName(row.getString("name"));
+            if (row.has("price")) exam.setPrice(row.getDouble("price"));
+            if (row.has("type")) exam.setType(row.getString("type"));
+            exams.add(exam);
+        }
+        return exams;
+    }
 }
