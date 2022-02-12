@@ -47,8 +47,6 @@ public class ExamsActivity extends AppCompatActivity {
                 error -> new Thread(() -> {
                 }).start()
         );
-
-
     }
 
 
@@ -58,7 +56,6 @@ public class ExamsActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.full_exams);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(new ExamsRecyclerViewAdapter(exams));
-
     }
 
 }

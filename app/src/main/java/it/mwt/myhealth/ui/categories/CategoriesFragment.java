@@ -23,13 +23,13 @@ import it.mwt.myhealth.volley.ExamRequest;
 public class CategoriesFragment extends Fragment implements View.OnClickListener {
 
     private LinearLayout linearLayout;
+    private LinearLayout linearLayoutCategories;
+    private LinearLayout linearLayoutExam;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories, container, false);
-
-
-
         return view;
     }
 
@@ -37,9 +37,9 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        System.out.println("entrato");
         linearLayout = (LinearLayout) getView().findViewById(R.id.all_exams);
-        System.out.println("entrato");
+        linearLayoutCategories = (LinearLayout)  getView().findViewById(R.id.rehabilitations_path);
+        linearLayoutExam = (LinearLayout)  getView().findViewById(R.id.rehabilitations_path);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +48,26 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
                 startActivity(intent);
             }
         });
+
+        linearLayoutCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ExamsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        linearLayoutExam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ExamsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
     }
 
 
