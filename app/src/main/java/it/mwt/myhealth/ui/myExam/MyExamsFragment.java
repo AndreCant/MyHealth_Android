@@ -1,4 +1,4 @@
-package it.mwt.myhealth.ui.exam;
+package it.mwt.myhealth.ui.myExam;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,18 +10,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONException;
-
 import java.util.HashMap;
 
-import it.mwt.myhealth.model.User;
 import it.mwt.myhealth.ui.login.LoginActivity;
-import it.mwt.myhealth.util.ParseJSON;
 import it.mwt.myhealth.util.Preferences;
 import it.mwt.myhealth.volley.ExamRequest;
 
 import it.mwt.myhealth.R;
-import it.mwt.myhealth.adapter.ExamsRecyclerViewAdapter;
 
 public class MyExamsFragment extends Fragment {
 

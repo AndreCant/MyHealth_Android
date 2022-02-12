@@ -10,8 +10,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import it.mwt.myhealth.ui.exam.MyExamsFragment;
-import it.mwt.myhealth.ui.categories.CategoriesFragment;
+import it.mwt.myhealth.ui.myExam.MyExamsFragment;
+import it.mwt.myhealth.ui.category.CategoriesFragment;
 import it.mwt.myhealth.ui.profile.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package it.mwt.myhealth.ui.exams;
+package it.mwt.myhealth.ui.exam;
 
 import android.content.Context;
 

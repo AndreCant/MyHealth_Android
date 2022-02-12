@@ -1,4 +1,4 @@
-package it.mwt.myhealth.ui.exams;
+package it.mwt.myhealth.ui.exam;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -8,16 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import org.json.JSONException;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import it.mwt.myhealth.R;
 import it.mwt.myhealth.adapter.ExamsRecyclerViewAdapter;
 import it.mwt.myhealth.model.Exam;
-import it.mwt.myhealth.util.ParseJSON;
-import it.mwt.myhealth.volley.ExamRequest;
 
 public class ExamsActivity extends AppCompatActivity {
 

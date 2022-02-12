@@ -28,4 +28,8 @@
     <string name="gender">Gender</string>
     <string name="logout">Logout</string>
     <string name="title_activity_clinic_location">ClinicLocationActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="choose_the_day_and_time_of_the_exam">Choose the day and time of the exam</string>
+    <string name="book">Book</string>
 </resources>

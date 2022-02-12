@@ -18,7 +18,7 @@ import org.json.JSONException;
 
 import it.mwt.myhealth.R;
 import it.mwt.myhealth.model.User;
-import it.mwt.myhealth.ui.categories.CategoriesFragment;
+import it.mwt.myhealth.ui.category.CategoriesFragment;
 import it.mwt.myhealth.ui.location.ClinicLocationActivity;
 import it.mwt.myhealth.ui.location.ClinicLocationViewModel;
 import it.mwt.myhealth.ui.login.LoginActivity;
