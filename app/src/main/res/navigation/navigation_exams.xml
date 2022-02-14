@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_exams"
+    app:startDestination="@id/examsFragment">
+
+    <fragment
+        android:id="@+id/examsFragment"
+        android:label="ExamsFragment"
+        tools:layout="@layout/fragment_exams"
+        android:name="it.mwt.myhealth.ui.exam.ExamsFragment">
+        <action
+            android:id="@+id/action_exams_to_exam"
+            app:destination="@id/examFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/examFragment"
+        android:label="ExamFragment"
+        tools:layout="@layout/fragment_exam"
+        android:name="it.mwt.myhealth.ui.exam.ExamFragment"/>
+</navigation>

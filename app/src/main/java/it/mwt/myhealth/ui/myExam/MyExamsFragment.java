@@ -34,25 +34,25 @@ public class MyExamsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String[] exams ={"Cuore", "spalla", "braccio", "Cuore", "spalla", "braccio","Cuore", "spalla", "braccio","Cuore", "spalla", "braccio"};
 
-    ExamRequest.getInstance().getExams(getContext(),
-            null,
-            response -> {
-                    System.out.println("success");
-            },
-            error->{
-
-                System.out.println("error");
-
-                if(error.networkResponse.statusCode == 401){
-                    Preferences.setUser(getContext(), null);
-                    Intent intent = new Intent(getContext(), LoginActivity.class);
-                    startActivity(intent);
-                }
-            }
-            );
-
-        RecyclerView recyclerView = getView().findViewById(R.id.exams_recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+//    ExamRequest.getInstance().getExams(getContext(),
+//            null,
+//            response -> {
+//                    System.out.println("success");
+//            },
+//            error->{
+//
+//                System.out.println("error");
+//
+//                if(error.networkResponse.statusCode == 401){
+//                    Preferences.setUser(getContext(), null);
+//                    Intent intent = new Intent(getContext(), LoginActivity.class);
+//                    startActivity(intent);
+//                }
+//            }
+//            );
+//
+//        RecyclerView recyclerView = getView().findViewById(R.id.exams_recycler);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         //recyclerView.setAdapter(new ExamsRecyclerViewAdapter(exams));
     }
 
