@@ -1,18 +1,22 @@
 package it.mwt.myhealth;
-
+import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import it.mwt.myhealth.ui.login.LoginActivity;
 import it.mwt.myhealth.ui.myExam.MyExamsFragment;
 import it.mwt.myhealth.ui.category.CategoriesFragment;
 import it.mwt.myhealth.ui.profile.ProfileFragment;
+import it.mwt.myhealth.ui.myExam.MyExamsActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment = null;
+            AppCompatActivity activity = null;
             switch (item.getItemId()){
                 case R.id.home:
                     fragment = new CategoriesFragment();
@@ -52,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new ProfileFragment();
                     break;
                 case R.id.exams:
-                    fragment = new MyExamsFragment();
-                    break;
+                    activity = new MyExamsActivity();
+                    Intent intent = new Intent(MainActivity.this,MyExamsActivity.class);
+                    startActivity(intent);
+                    return true;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,  fragment).commit();
             return true;

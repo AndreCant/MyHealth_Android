@@ -26,12 +26,15 @@
         <entry key="app/src/main/res/layout/activity_exams.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37228260869565216" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_my_exams.xml" value="0.26614583333333336" />
         <entry key="app/src/main/res/layout/adapter_exams.xml" value="0.27853260869565216" />
         <entry key="app/src/main/res/layout/adapter_my_exams.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_categories.xml" value="0.27853260869565216" />
         <entry key="app/src/main/res/layout/fragment_exam.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/fragment_exams.xml" value="0.27853260869565216" />
         <entry key="app/src/main/res/layout/fragment_exams_list.xml" value="0.27853260869565216" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/layout/fragment_my_exam.xml" value="0.26614583333333336" />
         <entry key="app/src/main/res/layout/fragment_my_exams.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.27853260869565216" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.271875" />

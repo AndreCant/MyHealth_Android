@@ -40,6 +40,7 @@
         <activity android:name=".ui.registration.RegistrationActivity" />
         <activity android:name=".ui.exam.ExamsActivity"/>
         <activity android:name=".ui.location.ClinicLocationActivity" />
+        <activity android:name=".ui.myExam.MyExamsActivity"/>
     </application>
 
 </manifest>

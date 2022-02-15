@@ -6,8 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,18 +47,22 @@ public class MyExamsFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //String[] exams ={"Cuore", "spalla", "braccio", "Cuore", "spalla", "braccio","Cuore", "spalla", "braccio","Cuore", "spalla", "braccio"};
-        this.setupRecyclerView();
+        viewModel = new ViewModelProvider(requireActivity()).get(MyExamsViewModel.class);
+        this.setupRecyclerView(view);
     }
 
 
-    public void setupRecyclerView (){
+    public void setupRecyclerView (View view){
         adapter = new MyExamsRecyclerViewAdapter(this.data);
 
         adapter.setOnReservationSelected(new MyExamsRecyclerViewAdapter.OnReservationSelected(){
             @Override
             public void onSelected(Reservation reservation) {
                 viewModel.setSelectedReservation(reservation);
+
+
+                NavController controller = Navigation.findNavController(view);
+                controller.navigate(R.id.action_exams_to_exam);
             }
         });
 
