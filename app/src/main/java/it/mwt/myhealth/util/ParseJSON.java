@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import it.mwt.myhealth.model.Exam;
+import it.mwt.myhealth.model.Reservation;
 import it.mwt.myhealth.model.User;
 
 public class ParseJSON {
@@ -91,5 +92,19 @@ public class ParseJSON {
             exams.add(exam);
         }
         return exams;
+    }
+
+    public static ArrayList<Reservation> json2reservationsType(JSONObject response) throws JSONException {
+        JSONArray jsonExams = response.has("reservations") ? response.getJSONArray("reservations") : null;
+        ArrayList<Reservation> reservations = new  ArrayList();
+        for (int i = 0; i < jsonExams.length(); i++) {
+            JSONObject row = jsonExams.getJSONObject(i);
+            Reservation reservation = new Reservation();
+            if (row.has("endHour")) reservation.setEndHour(row.getString("endHour"));
+            if (row.has("startHour")) reservation.setEndHour(row.getString("startHour"));
+            if (row.has("reservationDate")) reservation.setEndHour(row.getString("reservationDate"));
+            reservations.add(reservation);
+        }
+        return reservations;
     }
 }
