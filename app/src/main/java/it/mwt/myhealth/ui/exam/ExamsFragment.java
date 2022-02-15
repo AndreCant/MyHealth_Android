@@ -63,7 +63,6 @@ public class ExamsFragment extends Fragment {
         viewModel.getExamList().observe(getViewLifecycleOwner(), new Observer<List<Exam>>() {
             @Override
             public void onChanged(List<Exam> exams) {
-                System.out.println("5");
                 data.clear();
                 data.addAll(exams);
                 adapter.notifyDataSetChanged();

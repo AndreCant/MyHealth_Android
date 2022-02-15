@@ -74,6 +74,13 @@ public class ParseJSON {
             if (row.has("name")) exam.setName(row.getString("name"));
             if (row.has("price")) exam.setPrice(row.getDouble("price"));
             if (row.has("type")) exam.setType(row.getString("type"));
+            if (row.has("specialization")) exam.setSpecialization(row.getString("specialization"));
+            if (row.has("subSpecialization")) exam.setSubSpecialization(row.getString("subSpecialization"));
+            if (row.has("description")) exam.setDescription(row.getString("description"));
+            if (row.has("images")) {
+                JSONArray images = row.getJSONArray("images");
+                exam.setImageUrl(images.getJSONObject(0).getString("url"));
+            }
             exams.add(exam);
         }
         return exams;
@@ -89,6 +96,13 @@ public class ParseJSON {
             if (row.has("name")) exam.setName(row.getString("name"));
             if (row.has("price")) exam.setPrice(row.getDouble("price"));
             if (row.has("type")) exam.setType(row.getString("type"));
+            if (row.has("specialization")) exam.setSpecialization(row.getString("specialization"));
+            if (row.has("subSpecialization")) exam.setSubSpecialization(row.getString("subSpecialization"));
+            if (row.has("description")) exam.setDescription(row.getString("description"));
+            if (row.has("images")) {
+                JSONArray images = row.getJSONArray("images");
+                exam.setImageUrl(images.getJSONObject(0).getString("url"));
+            }
             exams.add(exam);
         }
         return exams;
