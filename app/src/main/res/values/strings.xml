@@ -32,4 +32,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="choose_the_day_and_time_of_the_exam">Choose the day and time of the exam</string>
     <string name="book">Book</string>
+    <string name="oops">Oops...</string>
+    <string name="dialogMessage1">Select date and hour before book!</string>
+    <string name="ok">OK</string>
 </resources>

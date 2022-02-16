@@ -71,6 +71,7 @@ public class ParseJSON {
             JSONObject row = jsonExams.getJSONObject(i);
             Exam exam = new Exam();
 
+            if (row.has("id")) exam.setId(row.getLong("id"));
             if (row.has("name")) exam.setName(row.getString("name"));
             if (row.has("price")) exam.setPrice(row.getDouble("price"));
             if (row.has("type")) exam.setType(row.getString("type"));
@@ -93,6 +94,7 @@ public class ParseJSON {
             JSONObject row = jsonExams.getJSONObject(i);
             Exam exam = new Exam();
 
+            if (row.has("id")) exam.setId(row.getLong("id"));
             if (row.has("name")) exam.setName(row.getString("name"));
             if (row.has("price")) exam.setPrice(row.getDouble("price"));
             if (row.has("type")) exam.setType(row.getString("type"));
@@ -109,16 +111,20 @@ public class ParseJSON {
     }
 
     public static ArrayList<Reservation> json2reservationsType(JSONObject response) throws JSONException {
+        System.out.println(response);
         JSONArray jsonExams = response.has("reservations") ? response.getJSONArray("reservations") : null;
         ArrayList<Reservation> reservations = new  ArrayList();
         for (int i = 0; i < jsonExams.length(); i++) {
             JSONObject row = jsonExams.getJSONObject(i);
             Reservation reservation = new Reservation();
+
             if (row.has("endHour")) reservation.setEndHour(row.getString("endHour"));
             if (row.has("startHour")) reservation.setEndHour(row.getString("startHour"));
             if (row.has("reservationDate")) reservation.setEndHour(row.getString("reservationDate"));
+            System.out.println(reservation.getReservationDate());
             reservations.add(reservation);
         }
+        System.out.println(reservations.size());
         return reservations;
     }
 }

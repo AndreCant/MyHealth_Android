@@ -11,8 +11,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -29,18 +32,28 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import org.json.JSONException;
 
 import java.util.Calendar;
 
+import it.mwt.myhealth.MainActivity;
 import it.mwt.myhealth.R;
 import it.mwt.myhealth.databinding.FragmentExamBinding;
 import it.mwt.myhealth.model.Exam;
 import it.mwt.myhealth.util.ImageLoadTask;
+import it.mwt.myhealth.util.ParseJSON;
+import it.mwt.myhealth.util.Preferences;
+import it.mwt.myhealth.util.Utility;
+import it.mwt.myhealth.volley.ReservationRequest;
 
 public class ExamFragment extends Fragment {
 
     private ExamViewModel viewModel;
-    private Exam exam;
+    private String date;
+    private String time;
+    private long examId;
 
     private ImageView image;
     private TextView nameTextView;
@@ -83,6 +96,7 @@ public class ExamFragment extends Fragment {
                     nameTextView.setText(exam.getName());
                     priceTextView.setText("€" + exam.getPrice());
                     typeTextView.setText(exam.getSpecialization() + ", " + exam.getSubSpecialization());
+                    examId = exam.getId();
                 }
             }
         });
@@ -98,10 +112,10 @@ public class ExamFragment extends Fragment {
 
             DatePickerDialog dialog = new DatePickerDialog(
                     getContext(),
-                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    R.style.datepicker,
                     mDateSetListener,
                     year,month,day);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
         });
 
@@ -112,10 +126,12 @@ public class ExamFragment extends Fragment {
 
             TimePickerDialog dialog = new TimePickerDialog(
                     getContext(),
+                    R.style.timepicker,
                     new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                            timeInput.setText(hourOfDay + ":" + minute);
+                            time = hourOfDay + ":" + minute;
+                            timeInput.setText(time);
                         }
             }, hour, minute, false);
             dialog.show();
@@ -125,10 +141,56 @@ public class ExamFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
+                String dateToShow = day + "/" + month + "/" + year;
+                String montString = month > 9 ? String.valueOf(month) : "0" + month;
+                String dayString = day > 9 ? String.valueOf(day) : "0" + day;
 
-                String date = day + "/" + month + "/" + year;
-                dateInput.setText(date);
+                date = year + "-" + montString + "-" + dayString;
+                dateInput.setText(dateToShow);
             }
         };
+
+        bookBtn.setOnClickListener(view1 -> {
+            if (date == null || time == null || date.isEmpty() || time.isEmpty() || examId == 0) {
+                Utility.showDialog(view1, getString(R.string.oops), getString(R.string.dialogMessage1), getString(R.string.ok));
+            }else {
+                ReservationRequest.getInstance().insert(
+                        getContext(),
+                        date,
+                        time,
+                        examId,
+                        response -> new Thread(() -> {
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Utility.showToast(view, "Prenotazione effettuata", Toast.LENGTH_SHORT);
+                                }
+                            });
+                            getActivity().finish();
+                        }).start(),
+                        error -> new Thread(() -> {
+                            String errorMessage = "";
+
+                            if(error.networkResponse != null){
+                                switch ( error.networkResponse.statusCode){
+                                    case 400:
+                                        errorMessage = "Orario non disponibile!";
+                                        break;
+                                    case 404:
+                                        errorMessage = "Richiesta non valida";
+                                        break;
+                                }
+                            }
+
+                            String finalErrorMessage = errorMessage;
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Utility.showToast(view, finalErrorMessage, Toast.LENGTH_SHORT);
+                                }
+                            });
+                        }).start()
+                );
+            }
+        });
     }
+
 }
