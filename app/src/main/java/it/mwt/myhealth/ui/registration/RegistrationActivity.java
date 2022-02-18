@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,7 @@ import it.mwt.myhealth.R;
 import it.mwt.myhealth.ui.login.LoginActivity;
 import it.mwt.myhealth.util.ParseJSON;
 import it.mwt.myhealth.util.Preferences;
+import it.mwt.myhealth.util.Utility;
 import it.mwt.myhealth.volley.UserRequest;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -113,14 +115,12 @@ public class RegistrationActivity extends AppCompatActivity {
 
                             String finalErrorMessage = errorMessage;
                             runOnUiThread(() -> {
-                                if (finalErrorMessage.contains("email")){
-                                    editTextEmail.setError(finalErrorMessage);
+                                if (finalErrorMessage.contains("fcode")){
+                                    Utility.showToast(view, "Invalid Fiscal Code", Toast.LENGTH_LONG);
+                                    editTextFiscalCode.setError("Invalid Fiscal Code");
                                 }else{
-                                    if (finalErrorMessage.contains("fcode")){
-                                        editTextFiscalCode.setError("Invalid Fiscal Code");
-                                    }else{
-                                        editTextUsername.setError(finalErrorMessage);
-                                    }
+                                    Utility.showToast(view, finalErrorMessage, Toast.LENGTH_LONG);
+                                    editTextUsername.setError(finalErrorMessage);
                                 }
                             });
 

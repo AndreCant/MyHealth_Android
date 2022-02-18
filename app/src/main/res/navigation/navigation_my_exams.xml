@@ -3,15 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_exams"
-    app:startDestination="@id/examsFragment">
+    app:startDestination="@id/MyExamsFragment">
 
     <fragment
         android:id="@+id/MyExamsFragment"
         android:label="ExamsFragment"
         tools:layout="@layout/fragment_my_exams"
-        android:name="it.mwt.myhealth.ui.exam.ExamsFragment">
-        <action
-            android:id="@+id/action_myexams_to_myexam"
-            app:destination="@id/examFragment" />
+        android:name="it.mwt.myhealth.ui.myExam.MyExamsFragment">
     </fragment>
 </navigation>

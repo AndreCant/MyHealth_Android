@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +24,7 @@ import it.mwt.myhealth.R;
 import it.mwt.myhealth.ui.registration.RegistrationActivity;
 import it.mwt.myhealth.util.ParseJSON;
 import it.mwt.myhealth.util.Preferences;
+import it.mwt.myhealth.util.Utility;
 import it.mwt.myhealth.volley.UserRequest;
 
 public class LoginActivity extends AppCompatActivity {
@@ -103,6 +105,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         String finalErrorMessage = errorMessage;
                         runOnUiThread(() -> {
+                            Utility.showToast(view, finalErrorMessage, Toast.LENGTH_LONG);
+                            editTextusername.setError(finalErrorMessage);
                             editTextPassword.setError(finalErrorMessage);
                         });
                     }).start()

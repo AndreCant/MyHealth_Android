@@ -119,8 +119,8 @@ public class ParseJSON {
             Reservation reservation = new Reservation();
 
             if (row.has("endHour")) reservation.setEndHour(row.getString("endHour"));
-            if (row.has("startHour")) reservation.setEndHour(row.getString("startHour"));
-            if (row.has("reservationDate")) reservation.setEndHour(row.getString("reservationDate"));
+            if (row.has("startHour")) reservation.setStartHour(row.getString("startHour"));
+            if (row.has("reservationDate")) reservation.setReservationDate(row.getString("reservationDate"));
             System.out.println(reservation.getReservationDate());
             reservations.add(reservation);
         }
