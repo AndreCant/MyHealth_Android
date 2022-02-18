@@ -100,7 +100,11 @@ public class LoginActivity extends AppCompatActivity {
                                     break;
                             }
                         }
-                        editTextPassword.setError(errorMessage);
+
+                        String finalErrorMessage = errorMessage;
+                        runOnUiThread(() -> {
+                            editTextPassword.setError(finalErrorMessage);
+                        });
                     }).start()
             );
         });
@@ -108,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         registerButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 }

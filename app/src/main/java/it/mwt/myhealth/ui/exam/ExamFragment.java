@@ -42,6 +42,8 @@ import it.mwt.myhealth.MainActivity;
 import it.mwt.myhealth.R;
 import it.mwt.myhealth.databinding.FragmentExamBinding;
 import it.mwt.myhealth.model.Exam;
+import it.mwt.myhealth.ui.login.LoginActivity;
+import it.mwt.myhealth.ui.registration.RegistrationActivity;
 import it.mwt.myhealth.util.ImageLoadTask;
 import it.mwt.myhealth.util.ParseJSON;
 import it.mwt.myhealth.util.Preferences;
@@ -151,44 +153,50 @@ public class ExamFragment extends Fragment {
         };
 
         bookBtn.setOnClickListener(view1 -> {
-            if (date == null || time == null || date.isEmpty() || time.isEmpty() || examId == 0) {
-                Utility.showDialog(view1, getString(R.string.oops), getString(R.string.dialogMessage1), getString(R.string.ok));
+            if (Preferences.isLogged(getContext())){
+                if (date == null || time == null || date.isEmpty() || time.isEmpty() || examId == 0) {
+                    Utility.showDialog(view1, getString(R.string.oops), getString(R.string.dialogMessage1), getString(R.string.ok));
+                }else {
+                    ReservationRequest.getInstance().insert(
+                            getContext(),
+                            date,
+                            time,
+                            examId,
+                            response -> new Thread(() -> {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Utility.showToast(view, "Prenotazione effettuata", Toast.LENGTH_SHORT);
+                                    }
+                                });
+                                getActivity().finish();
+                            }).start(),
+                            error -> new Thread(() -> {
+                                String errorMessage = "";
+
+                                if(error.networkResponse != null){
+                                    switch ( error.networkResponse.statusCode){
+                                        case 400:
+                                            errorMessage = "Orario non disponibile!";
+                                            break;
+                                        case 404:
+                                            errorMessage = "Richiesta non valida";
+                                            break;
+                                    }
+                                }
+
+                                String finalErrorMessage = errorMessage;
+                                getActivity().runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Utility.showToast(view, finalErrorMessage, Toast.LENGTH_SHORT);
+                                    }
+                                });
+                            }).start()
+                    );
+                }
             }else {
-                ReservationRequest.getInstance().insert(
-                        getContext(),
-                        date,
-                        time,
-                        examId,
-                        response -> new Thread(() -> {
-                            getActivity().runOnUiThread(new Runnable() {
-                                public void run() {
-                                    Utility.showToast(view, "Prenotazione effettuata", Toast.LENGTH_SHORT);
-                                }
-                            });
-                            getActivity().finish();
-                        }).start(),
-                        error -> new Thread(() -> {
-                            String errorMessage = "";
-
-                            if(error.networkResponse != null){
-                                switch ( error.networkResponse.statusCode){
-                                    case 400:
-                                        errorMessage = "Orario non disponibile!";
-                                        break;
-                                    case 404:
-                                        errorMessage = "Richiesta non valida";
-                                        break;
-                                }
-                            }
-
-                            String finalErrorMessage = errorMessage;
-                            getActivity().runOnUiThread(new Runnable() {
-                                public void run() {
-                                    Utility.showToast(view, finalErrorMessage, Toast.LENGTH_SHORT);
-                                }
-                            });
-                        }).start()
-                );
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
     }

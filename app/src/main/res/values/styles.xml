@@ -41,7 +41,7 @@
     </style>
 
     <style name="loginButton" parent="viewParent">
-        <item name="android:background">@drawable/login_shape_bk</item>
+        <item name="android:background">@color/headings</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>

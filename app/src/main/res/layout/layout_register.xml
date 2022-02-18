@@ -72,6 +72,7 @@
             android:id="@+id/registerBtn"
             style="@style/loginButton"
             android:layout_gravity="center"
+            android:backgroundTint="@color/headings"
             android:text="@string/register" />
 
         <TextView

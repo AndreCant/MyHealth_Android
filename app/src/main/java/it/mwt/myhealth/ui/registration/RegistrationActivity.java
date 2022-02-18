@@ -110,15 +110,20 @@ public class RegistrationActivity extends AppCompatActivity {
                                         break;
                                 }
                             }
-                            if (errorMessage.contains("email")){
-                                editTextEmail.setError(errorMessage);
-                            }else{
-                                if (errorMessage.contains("fcode")){
-                                    editTextFiscalCode.setError("Invalid Fiscal Code");
+
+                            String finalErrorMessage = errorMessage;
+                            runOnUiThread(() -> {
+                                if (finalErrorMessage.contains("email")){
+                                    editTextEmail.setError(finalErrorMessage);
                                 }else{
-                                    editTextUsername.setError(errorMessage);
+                                    if (finalErrorMessage.contains("fcode")){
+                                        editTextFiscalCode.setError("Invalid Fiscal Code");
+                                    }else{
+                                        editTextUsername.setError(finalErrorMessage);
+                                    }
                                 }
-                            }
+                            });
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (UnsupportedEncodingException e) {
@@ -131,6 +136,7 @@ public class RegistrationActivity extends AppCompatActivity {
         loginButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 
