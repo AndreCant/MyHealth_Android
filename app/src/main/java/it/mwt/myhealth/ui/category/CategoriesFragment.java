@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import it.mwt.myhealth.R;
+import it.mwt.myhealth.ui.doctor.DoctorActivity;
 import it.mwt.myhealth.ui.exam.ExamsActivity;
 
 public class CategoriesFragment extends Fragment implements View.OnClickListener {
@@ -38,8 +39,11 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ExamsActivity.class);
-                intent.putExtra("type", "all");
+//                Intent intent = new Intent(getActivity(), ExamsActivity.class);
+//                intent.putExtra("type", "all");
+//                startActivity(intent);
+
+                Intent intent = new Intent(getActivity(), DoctorActivity.class);
                 startActivity(intent);
             }
         });

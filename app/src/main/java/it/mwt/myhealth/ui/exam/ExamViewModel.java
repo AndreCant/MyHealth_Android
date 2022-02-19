@@ -37,64 +37,21 @@ public class ExamViewModel extends ViewModel {
     public void setType(String type) { this.type = type; }
 
     public void retrieveData(Context context) {
-        switch (this.type){
-            case "all" :
-                ExamRequest.getInstance().getExams(
-                    context,
-                    null,
-                    response -> new Thread(() -> {
-                        List<Exam> exams;
-
-                        try {
-                            exams = ParseJSON.json2exam(response);
-                            data.postValue(exams);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }).start(),
-                    error -> new Thread(() -> {
-
-                    }).start()
-                );
-            break;
-            case "exam":
-                ExamRequest.getInstance().getExamsType(
-                        context,
-                        null,
-                        response -> new Thread(() -> {
-                            List<Exam> exams;
-                            try {
-                                exams = ParseJSON.json2examsType(response);
-                                data.postValue(exams);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }).start(),
-                        error -> new Thread(() -> {
-                        }).start(),
-                        "exam"
-                );
-            break;
-            case "path":
-                ExamRequest.getInstance().getExamsType(
-                        context,
-                        null,
-                        response -> new Thread(() -> {
-                            List<Exam> exams;
-                            try {
-                                exams = ParseJSON.json2examsType(response);
-                                data.postValue(exams);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }).start(),
-                        error -> new Thread(() -> {
-                        }).start(),
-                        "path"
-                );
-            break;
-        }
-
-
+        ExamRequest.getInstance().getExamsType(
+                context,
+                null,
+                response -> new Thread(() -> {
+                    List<Exam> exams;
+                    try {
+                        exams = ParseJSON.json2examsType(response);
+                        data.postValue(exams);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }).start(),
+                error -> new Thread(() -> {
+                }).start(),
+                this.type
+        );
     }
 }

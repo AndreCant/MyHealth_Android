@@ -35,4 +35,7 @@
     <string name="oops">Oops...</string>
     <string name="dialogMessage1">Select date and hour before book!</string>
     <string name="ok">OK</string>
+    <string name="doctors">Doctors</string>
+    <string name="desc_test">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque ornare aenean euismod elementum nisi quis eleifend. Cras semper auctor neque vitae tempus quam. Nibh sed pulvinar proin gravida hendrerit lectus a. Magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus laoreet non curabitur gravida arcu. Sit amet dictum sit amet justo donec.</string>
+    <string name="curriculum_vitae">Curriculum Vitae:</string>
 </resources>

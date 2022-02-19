@@ -10,7 +10,9 @@ import org.json.JSONArray;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import it.mwt.myhealth.model.Doctor;
 import it.mwt.myhealth.model.Exam;
 import it.mwt.myhealth.model.Reservation;
 import it.mwt.myhealth.model.User;
@@ -126,5 +128,28 @@ public class ParseJSON {
         }
         System.out.println(reservations.size());
         return reservations;
+    }
+
+    public static List<Doctor> json2doctor(JSONObject response) throws JSONException {
+        JSONArray jsonDoctors = response.has("doctors") ? response.getJSONArray("doctors") : null;
+        List<Doctor> doctors = new  ArrayList();
+
+        if (jsonDoctors != null){
+            for (int i = 0; i < jsonDoctors.length(); i++) {
+                JSONObject row = jsonDoctors.getJSONObject(i);
+                Doctor doctor = new Doctor();
+
+                if (row.has("id")) doctor.setId(row.getLong("id"));
+                if (row.has("name")) doctor.setName(row.getString("name"));
+                if (row.has("surname")) doctor.setSurname(row.getString("surname"));
+                if (row.has("age")) doctor.setAge(row.getInt("age"));
+                if (row.has("specialization")) doctor.setSpecialization(row.getString("specialization"));
+                if (row.has("gender")) doctor.setGender(row.getString("gender"));
+                if (row.has("urlImage")) doctor.setImageUrl(row.getString("urlImage"));
+                if (row.has("skills")) doctor.setSkills(row.getString("skills"));
+                doctors.add(doctor);
+            }
+        }
+        return doctors;
     }
 }
