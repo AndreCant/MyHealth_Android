@@ -37,6 +37,8 @@ public class MyExamsRecyclerViewAdapter extends RecyclerView.Adapter<MyExamsRecy
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //riprendo elemento  del viewholder (name) e setto i parametri
         holder.name.setText(reservations.get(position).getReservationDate());
+        holder.reservation_date.setText(reservations.get(position).getReservationDate());
+        holder.start_hour.setText(reservations.get(position).getStartHour());
     }
 
     @Override
@@ -48,11 +50,14 @@ public class MyExamsRecyclerViewAdapter extends RecyclerView.Adapter<MyExamsRecy
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         //elemento dell'adapter dove vogliamo fare il display della lista
         TextView name;
+        TextView reservation_date;
+        TextView start_hour;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.my_exams_adapter);
-
+            reservation_date = itemView.findViewById(R.id.reservation_date);
+            start_hour = itemView.findViewById(R.id.start_hour);
             itemView.setOnClickListener(this);
         }
 

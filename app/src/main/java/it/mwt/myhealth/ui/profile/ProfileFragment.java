@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -24,6 +25,7 @@ import it.mwt.myhealth.ui.location.ClinicLocationViewModel;
 import it.mwt.myhealth.ui.login.LoginActivity;
 import it.mwt.myhealth.util.ParseJSON;
 import it.mwt.myhealth.util.Preferences;
+import it.mwt.myhealth.util.Utility;
 import it.mwt.myhealth.volley.UserRequest;
 
 public class ProfileFragment extends Fragment {
@@ -52,7 +54,6 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -75,6 +76,7 @@ public class ProfileFragment extends Fragment {
             getParentFragmentManager().beginTransaction().replace(R.id.frame_layout,  new CategoriesFragment()).commit();
             Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
             startActivity(intent);
+            getActivity().finish();
         }else {
             setProfileInfo();
             setLogoutBtn();
@@ -83,7 +85,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setProfileInfo(){
-
         if (Preferences.getId(getContext()) == 0){
             UserRequest.getInstance().profile(
                     getContext(),
@@ -102,6 +103,7 @@ public class ProfileFragment extends Fragment {
                             Preferences.setUser(getContext(), null);
                             Intent intent = new Intent(getContext(), LoginActivity.class);
                             startActivity(intent);
+                            getActivity().finish();
                         }
                     }).start()
             );
@@ -123,7 +125,9 @@ public class ProfileFragment extends Fragment {
     private void setLogoutBtn(){
         logout.setOnClickListener(view -> {
             Preferences.setUser(getContext(), null);
+            Preferences.setUserInfo(getContext(), null);
             getParentFragmentManager().beginTransaction().replace(R.id.frame_layout,  new CategoriesFragment()).commit();
+            Utility.showToast(view, "Logout Success", Toast.LENGTH_SHORT);
         });
     }
 
