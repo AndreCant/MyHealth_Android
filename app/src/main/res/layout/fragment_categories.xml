@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="16dp"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
         android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:context=".MainActivity">
 
         <LinearLayout
@@ -32,15 +38,15 @@
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="347dp"
+            android:layout_height="173dp"
             android:layout_marginTop="16dp"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
                 android:id="@+id/exams"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="184dp"
                 android:background="@color/colorPrimaryDark"
                 android:orientation="vertical"
                 android:padding="14dp">
@@ -115,7 +121,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:text="14 Exams"
                             android:textColor="#F06A90B5" />
 
 
@@ -130,8 +135,8 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="349dp"
+            android:layout_height="196dp"
             android:layout_marginTop="16dp"
             app:cardCornerRadius="8dp">
 
@@ -170,7 +175,7 @@
                                 android:layout_width="290dp"
                                 android:layout_height="111dp"
                                 android:layout_marginLeft="16dp"
-                                android:src="@drawable/ic_baseline_sick_24" />
+                                android:src="@drawable/ic_baseline_accessible_24" />
 
 
                         </LinearLayout>
@@ -203,7 +208,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:text="14 Comments"
                             android:textColor="#F06A90B5" />
 
 
@@ -217,8 +221,8 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="349dp"
+            android:layout_height="184dp"
             android:layout_marginTop="16dp"
             app:cardCornerRadius="8dp">
 
@@ -257,8 +261,7 @@
                                 android:layout_width="298dp"
                                 android:layout_height="112dp"
                                 android:layout_marginLeft="16dp"
-                                android:src="@drawable/ic_baseline_sick_24" />
-
+                                android:src="@drawable/ic_baseline_accessibility_new_24" />
 
                         </LinearLayout>
 
@@ -299,7 +302,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:text="320 Likes"
                             android:textColor="#F06A90B5" />
 
 
@@ -321,7 +323,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:text="14 Comments"
                             android:textColor="#F06A90B5" />
 
 
@@ -343,7 +344,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:text="Share"
                             android:textColor="#F06A90B5" />
 
 
@@ -359,4 +359,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
