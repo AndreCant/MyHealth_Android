@@ -119,10 +119,11 @@ public class ParseJSON {
             JSONObject row = jsonExams.getJSONObject(i);
             Reservation reservation = new Reservation();
 
+            if (row.has("examImageUrl")) reservation.setImageUrl(row.getString("examImageUrl"));
+            if (row.has("examName")) reservation.setExam(row.getString("examName"));
             if (row.has("endHour")) reservation.setEndHour(row.getString("endHour"));
             if (row.has("startHour")) reservation.setStartHour(row.getString("startHour"));
             if (row.has("reservationDate")) reservation.setReservationDate(row.getString("reservationDate"));
-            System.out.println(reservation.getReservationDate());
             reservations.add(reservation);
         }
         return reservations;
