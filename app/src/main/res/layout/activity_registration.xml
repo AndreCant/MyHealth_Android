@@ -60,7 +60,6 @@
                     android:layout_marginBottom="@dimen/loginViewsMargin"
                     android:background="@color/whiteCardColor">
 
-
                     <LinearLayout
                         style="@style/linearParent"
                         android:layout_gravity="center"
@@ -68,29 +67,51 @@
 
                         <TextView
                             style="@style/headerTextPrimary"
-                            android:text="Login"
-                            android:layout_marginTop="@dimen/loginViewsMargin"/>
+                            android:layout_marginTop="@dimen/loginViewsMargin"
+                            android:text="Register" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputUsername"
                             style="@style/parent"
-                            android:layout_marginTop="@dimen/loginViewsMargin">
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
 
                             <EditText
-                                android:id="@+id/editTextUsername"
+                                android:id="@+id/usernameRegistration"
                                 style="@style/modifiedEditText"
                                 android:hint="@string/username"
+                                android:inputType="text"
+                                android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                            <EditText
+                                android:id="@+id/emailRegistration"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/email"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputPassword"
                             style="@style/parent"
-                            android:layout_marginTop="@dimen/loginViewsMargin">
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
 
                             <EditText
-                                android:id="@+id/editTextPassword"
+                                android:id="@+id/fiscalCodeRegistration"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/fiscal_code"
+                                android:inputType="text"
+                                android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                            <EditText
+                                android:id="@+id/passwordRegistration"
                                 style="@style/modifiedEditText"
                                 android:hint="@string/password"
                                 android:inputType="textPassword"
@@ -98,21 +119,20 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <Button
-                            android:id="@+id/cirLoginButton"
+                            android:id="@+id/registerBtn"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="@dimen/loginViewsMargin"
                             android:background="@drawable/login_shape_bk"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:backgroundTint="@null"
-                            android:text="@string/login" />
+                            android:text="@string/register" />
 
                         <TextView
-                            android:id="@+id/toRegisterBtn"
+                            android:id="@+id/loginBtn"
                             style="@style/parent"
                             android:layout_marginTop="@dimen/loginViewsMargin"
-                            android:minHeight="48dp"
-                            android:text="@string/register"
+                            android:text="@string/login"
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimary"
                             android:textStyle="bold" />

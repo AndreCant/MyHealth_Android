@@ -7,7 +7,7 @@
         android:topRightRadius="0dp"
         />
     <solid
-        android:color="@color/colorPrimaryDark"
+        android:color="@color/headings"
         />
     <size
         android:width="182dp"
