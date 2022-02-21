@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_doctor"
+    app:startDestination="@id/doctorsFragment">
+
+    <fragment
+        android:id="@+id/doctorsFragment"
+        android:label="DoctorsFragment"
+        tools:layout="@layout/fragment_doctors"
+        android:name="it.mwt.myhealth.ui.doctor.DoctorsFragment">
+        <action
+            android:id="@+id/action_doctors_to_doctor"
+            app:destination="@id/doctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorFragment"
+        android:label="DoctorFragment"
+        tools:layout="@layout/fragment_doctor"
+        android:name="it.mwt.myhealth.ui.doctor.DoctorFragment"/>
+</navigation>

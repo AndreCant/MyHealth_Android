@@ -93,7 +93,9 @@ public class ProfileFragment extends Fragment {
                         try {
                             User user = ParseJSON.json2user(response);
                             Preferences.setUserInfo(getContext(), user);
-                            setTextView();
+                            getActivity().runOnUiThread(() -> {
+                                setTextView();
+                            });
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -127,7 +129,6 @@ public class ProfileFragment extends Fragment {
             Preferences.setUser(getContext(), null);
             Preferences.setUserInfo(getContext(), null);
             getParentFragmentManager().beginTransaction().replace(R.id.frame_layout,  new CategoriesFragment()).commit();
-            Utility.showToast(view, "Logout Success", Toast.LENGTH_SHORT);
         });
     }
 
