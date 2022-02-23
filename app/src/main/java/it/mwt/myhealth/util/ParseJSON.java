@@ -118,12 +118,15 @@ public class ParseJSON {
         for (int i = 0; i < jsonExams.length(); i++) {
             JSONObject row = jsonExams.getJSONObject(i);
             Reservation reservation = new Reservation();
-
+            String[] parts = row.getString("startHour").split("T");
+            String final_start_hour= parts[1];
+            String[] parts_reservation = row.getString("reservationDate").split("-");
+            String final_date = parts_reservation[2]+"/"+parts_reservation[1]+"/"+parts_reservation[0];
             if (row.has("examImageUrl")) reservation.setImageUrl(row.getString("examImageUrl"));
             if (row.has("examName")) reservation.setExam(row.getString("examName"));
             if (row.has("endHour")) reservation.setEndHour(row.getString("endHour"));
-            if (row.has("startHour")) reservation.setStartHour(row.getString("startHour"));
-            if (row.has("reservationDate")) reservation.setReservationDate(row.getString("reservationDate"));
+            if (row.has("startHour")) reservation.setStartHour(final_start_hour);
+            if (row.has("reservationDate")) reservation.setReservationDate(final_date);
             reservations.add(reservation);
         }
         return reservations;
