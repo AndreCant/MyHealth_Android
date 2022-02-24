@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class ProfileFragment extends Fragment {
     private TextView fiscalCodeText;
     private TextView dateOfBirthText;
     private TextView genderText;
-    private TextView logout;
+    private LinearLayout logout;
     private Button location;
 
     private ClinicLocationViewModel clinicLocation;

@@ -50,8 +50,6 @@
                     android:text="My Health" />
 
                 <androidx.cardview.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     style="@style/loginCard"
                     app:cardCornerRadius="@dimen/loginCardRadius"
                     android:elevation="5dp"
@@ -99,6 +97,18 @@
                             android:layout_marginTop="@dimen/signup_text_margin_top">
 
                             <EditText
+                                android:id="@+id/passwordRegistration"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/password"
+                                android:inputType="textPassword"
+                                android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                            <EditText
                                 android:id="@+id/fiscalCodeRegistration"
                                 style="@style/modifiedEditText"
                                 android:hint="@string/fiscal_code"
@@ -111,17 +121,82 @@
                             android:layout_marginTop="@dimen/signup_text_margin_top">
 
                             <EditText
-                                android:id="@+id/passwordRegistration"
+                                android:id="@+id/nameRegistration"
                                 style="@style/modifiedEditText"
-                                android:hint="@string/password"
-                                android:inputType="textPassword"
+                                android:hint="@string/name"
+                                android:inputType="text"
                                 android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+
+                            <EditText
+                                android:id="@+id/surnameRegistration"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/surname"
+                                android:inputType="text"
+                                android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent">
+
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/male"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/male"
+                                    android:buttonTint="@color/headings"
+                                    android:checked="true"
+                                    />
+
+                                <RadioButton
+                                    android:id="@+id/female"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/female"
+                                    android:buttonTint="@color/headings"
+                                    />
+
+                            </RadioGroup>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Button
+                                    android:id="@+id/selectBirthdayRegistration"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/select_birthday"
+                                    android:backgroundTint="@color/headings"/>
+
+                                <TextView
+                                    android:id="@+id/showBirthdayRegistration"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="10dp"
+                                    android:gravity="center_vertical"
+                                    />
+
+                            </LinearLayout>
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <Button
                             android:id="@+id/registerBtn"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/loginViewsMargin"
+                            android:layout_marginTop="40dp"
                             android:background="@drawable/login_shape_bk"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

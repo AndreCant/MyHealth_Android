@@ -25,14 +25,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/categories"
-                android:textColor="@color/address"
-                android:textSize="24dp"
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/categories"-->
+<!--                android:textColor="@color/address"-->
+<!--                android:textSize="24dp"-->
 
-                />
+<!--                />-->
 
         </LinearLayout>
 

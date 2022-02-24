@@ -1,20 +1,23 @@
 package it.mwt.myhealth.ui.registration;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Response;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
+import java.util.Objects;
 
 import it.mwt.myhealth.MainActivity;
 import it.mwt.myhealth.R;
@@ -30,13 +33,21 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextFiscalCode;
+    private EditText editTextName;
+    private EditText editTextSurname;
+    private RadioButton radioMale;
+    private RadioButton radioFemale;
+    private Button birthdayButton;
+    private TextView birthdayTextView;
     private Button registerButton;
     private TextView loginButton;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_registration);
 
         //Bind view
@@ -44,17 +55,27 @@ public class RegistrationActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.passwordRegistration);
         editTextEmail = findViewById(R.id.emailRegistration);
         editTextFiscalCode = findViewById(R.id.fiscalCodeRegistration);
+        editTextName = findViewById(R.id.nameRegistration);
+        editTextSurname = findViewById(R.id.surnameRegistration);
+        radioMale = findViewById(R.id.male);
+        radioFemale = findViewById(R.id.female);
+        birthdayButton = findViewById(R.id.selectBirthdayRegistration);
+        birthdayTextView = findViewById(R.id.showBirthdayRegistration);
         loginButton = findViewById(R.id.loginBtn);
         registerButton = findViewById(R.id.registerBtn);
 
+        birthdayTextView.setText("Select Date...");
+
         //On submit send login request
         registerButton.setOnClickListener(view -> {
-
             //Get values
             String username = editTextUsername.getText().toString();
             String password = editTextPassword.getText().toString();
             String email = editTextEmail.getText().toString();
             String fiscalCode = editTextFiscalCode.getText().toString();
+            String name = editTextName.getText().toString();
+            String surname = editTextSurname.getText().toString();
+            String gender = radioMale.isChecked() ? "M" : (radioFemale.isChecked() ? "F" : null );
 
             if (username.isEmpty()) {
                 editTextUsername.setError(getString(R.string.field_empty));
@@ -77,7 +98,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
 
             //Parse username and password to JSON
-            JSONObject jsonRequest = ParseJSON.register2JSON(username, email, password, fiscalCode);
+            JSONObject jsonRequest = ParseJSON.register2JSON(username, email, password, fiscalCode, name, surname, gender, date);
 
             //Send login request
             UserRequest.getInstance().registration(RegistrationActivity.this,
@@ -138,6 +159,32 @@ public class RegistrationActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-    }
 
+        birthdayButton.setOnClickListener(view -> {
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog dialog = new DatePickerDialog(
+                    RegistrationActivity.this,
+                    R.style.datepicker,
+                    mDateSetListener,
+                    year,month,day);
+            dialog.show();
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String dateToShow = day + "/" + month + "/" + year;
+                String montString = month > 9 ? String.valueOf(month) : "0" + month;
+                String dayString = day > 9 ? String.valueOf(day) : "0" + day;
+
+                date = year + "-" + montString + "-" + dayString;
+                birthdayTextView.setText(dateToShow);
+            }
+        };
+    }
 }

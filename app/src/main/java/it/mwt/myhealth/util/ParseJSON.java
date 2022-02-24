@@ -51,14 +51,17 @@ public class ParseJSON {
         return user;
     }
 
-    public static JSONObject register2JSON(String username, String email, String password, String fiscalCode) {
-
+    public static JSONObject register2JSON(String username, String email, String password, String fiscalCode, String name, String surname, String gender, String dateOfBirth) {
         JSONObject jsonUser = new JSONObject();
         try {
             if(username != null) jsonUser.put("username", username);
             if(email != null) jsonUser.put("email", email);
             if(password != null) jsonUser.put("password", password);
             if(fiscalCode != null) jsonUser.put("fiscalCode", fiscalCode);
+            if(name != null) jsonUser.put("name", name);
+            if(surname != null) jsonUser.put("surname", surname);
+            if(gender != null) jsonUser.put("gender", gender);
+            if(dateOfBirth != null) jsonUser.put("dateOfBirth", dateOfBirth);
         } catch (JSONException e) {
             Log.e(TAG,e.getMessage());
         }
