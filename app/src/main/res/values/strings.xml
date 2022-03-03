@@ -41,4 +41,15 @@
     <string name="male">M</string>
     <string name="female">F</string>
     <string name="select_birthday">Select Birthday</string>
+    <string name="my_location">MY LOCATION</string>
+    <string name="service_not_available">Servizio non disponibile</string>
+    <string name="invalid_credentials">Credenziali errate</string>
+    <string name="access_denied">Accesso negato</string>
+    <string name="request_not_valid">Richiesta non valida</string>
+    <string name="alredy_exist">Username, Email or Fiscal Code alredy exist!</string>
+    <string name="invalid_fiscal_code">Invalid Fiscal Code</string>
+    <string name="select_date">Select Date...</string>
+    <string name="select_hour">Select Hour...</string>
+    <string name="book_ok">Prenotazione effettuata</string>
+    <string name="hour_not_available">Orario non disponibile!</string>
 </resources>

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import it.mwt.myhealth.R;
-import it.mwt.myhealth.model.Doctor;
 import it.mwt.myhealth.model.Reservation;
 import it.mwt.myhealth.util.ImageLoadTask;
 
@@ -18,15 +17,9 @@ public class MyExamsRecyclerViewAdapter extends RecyclerView.Adapter<MyExamsRecy
 
     private List<Reservation> reservations;
 
-    private OnReservationSelected listener;
-
     public  MyExamsRecyclerViewAdapter (List<Reservation> reservations){
         this.reservations = reservations;
         if (this.reservations == null) this.reservations =  new ArrayList<Reservation>();
-    }
-
-    public void setOnReservationSelected(OnReservationSelected listener) {
-        this.listener = listener;
     }
 
     @NonNull
@@ -38,7 +31,6 @@ public class MyExamsRecyclerViewAdapter extends RecyclerView.Adapter<MyExamsRecy
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //riprendo elemento  del viewholder (name) e setto i parametri
         Reservation reservation = reservations.get(position);
         holder.name.setText(reservations.get(position).getExam());
         holder.reservation_date.setText(reservations.get(position).getReservationDate());
@@ -52,9 +44,7 @@ public class MyExamsRecyclerViewAdapter extends RecyclerView.Adapter<MyExamsRecy
         return reservations.size();
     }
 
-    //costruisco il viewholder per ritornarlo nel createViewHolder;
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        //elemento dell'adapter dove vogliamo fare il display della lista
+    public class ViewHolder extends RecyclerView.ViewHolder{
         TextView name;
         TextView reservation_date;
         TextView start_hour;
@@ -66,18 +56,6 @@ public class MyExamsRecyclerViewAdapter extends RecyclerView.Adapter<MyExamsRecy
             reservation_date = itemView.findViewById(R.id.reservation_date);
             start_hour = itemView.findViewById(R.id.start_hour);
             image = itemView.findViewById(R.id.reservation_image);
-            itemView.setOnClickListener(this);
         }
-
-        @Override
-        public void onClick(View view) {
-            Reservation reservation = reservations.get(getAbsoluteAdapterPosition());
-
-            if (listener != null) listener.onSelected(reservation);
-        }
-    }
-
-    public interface OnReservationSelected {
-        void onSelected(Reservation reservation);
     }
 }

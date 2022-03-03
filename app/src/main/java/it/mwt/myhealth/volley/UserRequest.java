@@ -3,7 +3,6 @@ package it.mwt.myhealth.volley;
 import android.content.Context;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 
@@ -71,7 +70,6 @@ public class UserRequest {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                //headers.put("Content-Type", "application/json");
                 headers.put("Authorization", "Bearer " + Preferences.getToken(context));
                 return headers;
             }
@@ -79,41 +77,4 @@ public class UserRequest {
 
         VolleyRequest.getInstance(context).getQueue().add(request);
     }
-
-
-    /**
-     * Update user
-     * */
-//    public void update(final Context context, JSONObject jsonRequest, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener){
-//
-//        String url = RUNNERS_URL+ Pref.getId(context);
-//
-//        JsonObjectRequest request = new JsonObjectRequest(
-//                JsonObjectRequest.Method.PATCH,
-//                url,
-//                jsonRequest,
-//                responseListener,
-//                errorListener
-//        ){
-//            @Override
-//            public String getBodyContentType() {
-//                return "application/json; charset=utf-8";
-//            }
-//
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                HashMap<String, String> headers = new HashMap<String, String>();
-//                String auth = "Bearer "+Pref.getToken(context);
-//                headers.put("Authorization", auth);
-//                return headers;
-//            }
-//
-//            @Override
-//            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-//                return Response.success(new JSONObject(), HttpHeaderParser.parseCacheHeaders(response));
-//            }
-//        };
-//
-//        VolleyRequest.getInstance(context).getQueue().add(request);
-//    }
 }

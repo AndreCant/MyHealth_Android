@@ -101,7 +101,7 @@ public class ClinicLocationActivity extends FragmentActivity implements OnMapRea
 
         if(marker == null) {
             MarkerOptions options = new MarkerOptions();
-            options.title("MY LOCATION");
+            options.title(getString(R.string.my_location));
             options.position(position);
             marker = mMap.addMarker(options);
         } else {
@@ -121,7 +121,7 @@ public class ClinicLocationActivity extends FragmentActivity implements OnMapRea
 
                 if(marker == null) {
                     MarkerOptions options = new MarkerOptions();
-                    options.title("MY LOCATION");
+                    options.title(getString(R.string.my_location));
                     options.position(position);
                     marker = mMap.addMarker(options);
                 } else {

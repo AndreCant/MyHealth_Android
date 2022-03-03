@@ -103,8 +103,8 @@ public class ExamFragment extends Fragment {
             }
         });
 
-        dateInput.setText("Select Date...");
-        timeInput.setText("Select Hour...");
+        dateInput.setText(R.string.select_date);
+        timeInput.setText(R.string.select_hour);
 
         dateInput.setOnClickListener(view1 -> {
             Calendar cal = Calendar.getInstance();
@@ -117,7 +117,6 @@ public class ExamFragment extends Fragment {
                     R.style.datepicker,
                     mDateSetListener,
                     year,month,day);
-//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
         });
 
@@ -165,7 +164,7 @@ public class ExamFragment extends Fragment {
                             response -> new Thread(() -> {
                                 getActivity().runOnUiThread(new Runnable() {
                                     public void run() {
-                                        Utility.showToast(view, "Prenotazione effettuata", Toast.LENGTH_SHORT);
+                                        Utility.showToast(view, getString(R.string.book_ok), Toast.LENGTH_SHORT);
                                     }
                                 });
                                 getActivity().finish();
@@ -176,10 +175,10 @@ public class ExamFragment extends Fragment {
                                 if(error.networkResponse != null){
                                     switch ( error.networkResponse.statusCode){
                                         case 400:
-                                            errorMessage = "Orario non disponibile!";
+                                            errorMessage = getString(R.string.hour_not_available);
                                             break;
                                         case 404:
-                                            errorMessage = "Richiesta non valida";
+                                            errorMessage = getString(R.string.request_not_valid);
                                             break;
                                     }
                                 }
@@ -200,5 +199,4 @@ public class ExamFragment extends Fragment {
             }
         });
     }
-
 }

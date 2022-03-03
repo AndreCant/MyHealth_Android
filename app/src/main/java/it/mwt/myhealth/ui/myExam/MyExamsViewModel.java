@@ -20,40 +20,30 @@ public class MyExamsViewModel extends ViewModel {
 
     private MutableLiveData<List<Reservation>> data = new MutableLiveData<>();
 
-    private MutableLiveData<Reservation> reservation = new MutableLiveData<>();
-
     private String type;
 
     public LiveData<List<Reservation>> getReservationsList() {
         return data;
     }
 
-    public LiveData<Reservation> getSelectedReservation() {
-        return reservation;
-    }
-
-    public void setSelectedReservation(Reservation reservation) {
-        this.reservation.setValue(reservation);
-    }
-
     public void setType(String type) { this.type = type; }
 
     public void retrieveData(Context context) {
-                ReservationRequest.getInstance().getReservations(
-                        context,
-                        null,
-                        response -> new Thread(() -> {
-                            List<Reservation> reservations;
+        ReservationRequest.getInstance().getReservations(
+                context,
+                null,
+                response -> new Thread(() -> {
+                    List<Reservation> reservations;
 
-                            try {
-                                reservations = ParseJSON.json2reservationsType(response);
-                                data.postValue(reservations);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }).start(),
-                        error -> new Thread(() -> {
-                        }).start()
-                );
+                    try {
+                        reservations = ParseJSON.json2reservationsType(response);
+                        data.postValue(reservations);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }).start(),
+                error -> new Thread(() -> {
+                }).start()
+        );
     }
 }

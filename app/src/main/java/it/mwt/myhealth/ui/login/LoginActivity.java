@@ -41,24 +41,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Hide action bar
         getSupportActionBar().hide();
 
-        //Bind view
         editTextusername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         loginButton = findViewById(R.id.cirLoginButton);
         registerButton = findViewById(R.id.toRegisterBtn);
 
-        /** To remove */
-        editTextusername.setText("andrea95");
-        editTextPassword.setText("admin123");
-        /**************/
-
-        //On submit send login request
         loginButton.setOnClickListener(view -> {
-
-            //Get values
             String username = editTextusername.getText().toString();
             String password = editTextPassword.getText().toString();
 
@@ -72,10 +62,8 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            //Parse username and password to JSON
             JSONObject jsonRequest = ParseJSON.login2JSON(username, password);
 
-            //Send login request
             UserRequest.getInstance().login(LoginActivity.this,
                     jsonRequest,
                     response -> new Thread(() -> {
@@ -88,17 +76,17 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }).start(),
                     error -> new Thread(() -> {
-                        String errorMessage = "Servizio non disponibile";
+                        String errorMessage = getString(R.string.service_not_available);
                         if(error.networkResponse != null){
                             switch ( error.networkResponse.statusCode){
                                 case 401:
-                                    errorMessage = "Credenziali errate";
+                                    errorMessage = getString(R.string.invalid_credentials);
                                     break;
                                 case 403:
-                                    errorMessage = "Accesso negato";
+                                    errorMessage = getString(R.string.access_denied);
                                     break;
                                 case 404:
-                                    errorMessage = "Richiesta non valida";
+                                    errorMessage = getString(R.string.request_not_valid);
                                     break;
                             }
                         }

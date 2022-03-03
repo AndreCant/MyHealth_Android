@@ -1,8 +1,5 @@
 package it.mwt.myhealth.ui.doctor;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,27 +11,15 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
-
-import java.util.Calendar;
-
 import it.mwt.myhealth.R;
 import it.mwt.myhealth.model.Doctor;
-import it.mwt.myhealth.model.Exam;
-import it.mwt.myhealth.ui.exam.ExamViewModel;
-import it.mwt.myhealth.ui.login.LoginActivity;
 import it.mwt.myhealth.util.ImageLoadTask;
-import it.mwt.myhealth.util.Preferences;
-import it.mwt.myhealth.util.Utility;
-import it.mwt.myhealth.volley.ReservationRequest;
 
 public class DoctorFragment extends Fragment {
 
-    DoctorViewModel viewModel;
+    private DoctorViewModel viewModel;
 
     private ImageView image;
     private TextView nameTextView;

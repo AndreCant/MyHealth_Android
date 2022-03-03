@@ -38,7 +38,6 @@ public class ExamsRecyclerViewAdapter extends RecyclerView.Adapter<ExamsRecycler
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //riprendo elemento  del viewholder (name) e setto i parametri
         holder.name.setText(exams.get(position).getName());
     }
 
@@ -47,9 +46,7 @@ public class ExamsRecyclerViewAdapter extends RecyclerView.Adapter<ExamsRecycler
         return exams.size();
     }
 
-    //costruisco il viewholder per ritornarlo nel createViewHolder;
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        //elemento dell'adapter dove vogliamo fare il display della lista
         TextView name;
 
         public ViewHolder(@NonNull View itemView) {

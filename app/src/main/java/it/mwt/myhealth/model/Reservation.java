@@ -5,7 +5,6 @@ public class Reservation {
     private String reservationDate;
     private String startHour;
     private String endHour;
-    private Visit visit;
     private User patient;
     private String exam;
     private String imageUrl;
@@ -17,8 +16,6 @@ public class Reservation {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-
 
     public String getReservationDate() {
         return reservationDate;
@@ -42,14 +39,6 @@ public class Reservation {
 
     public void setEndHour(String endHour) {
         this.endHour = endHour;
-    }
-
-    public Visit getVisit() {
-        return visit;
-    }
-
-    public void setVisit(Visit visit) {
-        this.visit = visit;
     }
 
     public User getPatient() {

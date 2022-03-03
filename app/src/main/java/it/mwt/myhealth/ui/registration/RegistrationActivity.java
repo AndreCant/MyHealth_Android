@@ -50,7 +50,6 @@ public class RegistrationActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_registration);
 
-        //Bind view
         editTextUsername = findViewById(R.id.usernameRegistration);
         editTextPassword = findViewById(R.id.passwordRegistration);
         editTextEmail = findViewById(R.id.emailRegistration);
@@ -64,11 +63,9 @@ public class RegistrationActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginBtn);
         registerButton = findViewById(R.id.registerBtn);
 
-        birthdayTextView.setText("Select Date...");
+        birthdayTextView.setText(R.string.select_date);
 
-        //On submit send login request
         registerButton.setOnClickListener(view -> {
-            //Get values
             String username = editTextUsername.getText().toString();
             String password = editTextPassword.getText().toString();
             String email = editTextEmail.getText().toString();
@@ -97,10 +94,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 return;
             }
 
-            //Parse username and password to JSON
             JSONObject jsonRequest = ParseJSON.register2JSON(username, email, password, fiscalCode, name, surname, gender, date);
 
-            //Send login request
             UserRequest.getInstance().registration(RegistrationActivity.this,
                     jsonRequest,
                     response -> new Thread(() -> {
@@ -113,7 +108,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         }
                     }).start(),
                     error -> new Thread(() -> {
-                        String errorMessage = "Servizio non disponibile";
+                        String errorMessage = getString(R.string.service_not_available);
                         try {
                             JSONObject data = new JSONObject(new String(error.networkResponse.data, "utf-8"));
                             System.out.println(data);
@@ -123,13 +118,13 @@ public class RegistrationActivity extends AppCompatActivity {
                                         errorMessage = data.getString("constraint");
                                         break;
                                     case 401:
-                                        errorMessage = "Username, Email or Fiscal Code alredy exist!";
+                                        errorMessage = getString(R.string.alredy_exist);
                                         break;
                                     case 403:
-                                        errorMessage = "Accesso negato";
+                                        errorMessage = getString(R.string.access_denied);
                                         break;
                                     case 404:
-                                        errorMessage = "Richiesta non valida";
+                                        errorMessage = getString(R.string.request_not_valid);
                                         break;
                                 }
                             }
@@ -137,14 +132,13 @@ public class RegistrationActivity extends AppCompatActivity {
                             String finalErrorMessage = errorMessage;
                             runOnUiThread(() -> {
                                 if (finalErrorMessage.contains("fcode")){
-                                    Utility.showToast(view, "Invalid Fiscal Code", Toast.LENGTH_LONG);
-                                    editTextFiscalCode.setError("Invalid Fiscal Code");
+                                    Utility.showToast(view, getString(R.string.invalid_fiscal_code), Toast.LENGTH_LONG);
+                                    editTextFiscalCode.setError(getString(R.string.invalid_fiscal_code));
                                 }else{
                                     Utility.showToast(view, finalErrorMessage, Toast.LENGTH_LONG);
                                     editTextUsername.setError(finalErrorMessage);
                                 }
                             });
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (UnsupportedEncodingException e) {

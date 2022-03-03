@@ -25,7 +25,6 @@ public class ReservationRequest {
         return instance == null ? instance = new ReservationRequest() : instance;
     }
 
-
     public void getReservations(Context context, JSONObject jsonRequest, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener){
 
         JsonObjectRequest request = new JsonObjectRequest(
@@ -42,7 +41,6 @@ public class ReservationRequest {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                //headers.put("Content-Type", "application/json");
                 headers.put("Authorization", "Bearer " + Preferences.getToken(context));
                 return headers;
             }

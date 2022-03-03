@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -26,7 +25,6 @@ import it.mwt.myhealth.ui.location.ClinicLocationViewModel;
 import it.mwt.myhealth.ui.login.LoginActivity;
 import it.mwt.myhealth.util.ParseJSON;
 import it.mwt.myhealth.util.Preferences;
-import it.mwt.myhealth.util.Utility;
 import it.mwt.myhealth.volley.UserRequest;
 
 public class ProfileFragment extends Fragment {
@@ -62,7 +60,6 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //Bind view
         usernameText = view.findViewById(R.id.profile_text_username);
         emailText = view.findViewById(R.id.profile_text_email);
         nameText = view.findViewById(R.id.profile_text_name);
@@ -88,27 +85,27 @@ public class ProfileFragment extends Fragment {
     private void setProfileInfo(){
         if (Preferences.getId(getContext()) == 0){
             UserRequest.getInstance().profile(
-                    getContext(),
-                    null,
-                    response -> new Thread(() -> {
-                        try {
-                            User user = ParseJSON.json2user(response);
-                            Preferences.setUserInfo(getContext(), user);
-                            getActivity().runOnUiThread(() -> {
-                                setTextView();
-                            });
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }).start(),
-                    error -> new Thread(() -> {
-                        if(error.networkResponse.statusCode == 401){
-                            Preferences.setUser(getContext(), null);
-                            Intent intent = new Intent(getContext(), LoginActivity.class);
-                            startActivity(intent);
-                            getActivity().finish();
-                        }
-                    }).start()
+                getContext(),
+                null,
+                response -> new Thread(() -> {
+                    try {
+                        User user = ParseJSON.json2user(response);
+                        Preferences.setUserInfo(getContext(), user);
+                        getActivity().runOnUiThread(() -> {
+                            setTextView();
+                        });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }).start(),
+                error -> new Thread(() -> {
+                    if(error.networkResponse.statusCode == 401){
+                        Preferences.setUser(getContext(), null);
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                }).start()
             );
         }else {
             setTextView();
